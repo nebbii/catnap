@@ -15,7 +15,7 @@ public class Toriyasu extends Rectangle {
     public Toriyasu() {
         sprite = new Texture(Gdx.files.internal("bucket.png"));
         health = 100;
-        vspeed = 20;
+        vspeed = 0;
     }
 
     // Returns next position forced by gravity
@@ -25,8 +25,8 @@ public class Toriyasu extends Rectangle {
             setVspeed(0);
         }
         else {
-            setY(getY() - (vspeed * 20));
-            vspeed = (vspeed * 1.1f);
+            setY(getY() - (vspeed * 2 ));
+            vspeed = (vspeed - 1f);
         }
 
         Gdx.app.log("Gravity", "Current gravity is ");
@@ -34,7 +34,8 @@ public class Toriyasu extends Rectangle {
     }
     
     public void jump() {
-        this.setVspeed(this.getVspeed()+40);
+        setY(1);
+        setVspeed(getVspeed()+40);
     }
 
     public int getHealth() {
