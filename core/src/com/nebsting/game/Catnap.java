@@ -24,7 +24,7 @@ public class Catnap extends Game {
 
         themesong.setVolume(0.5f);
         themesong.setLooping(true);
-        themesong.play();
+        //themesong.play();
 
         this.setScreen(new TitleCard(this));
 	}

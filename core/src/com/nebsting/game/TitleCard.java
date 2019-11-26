@@ -23,9 +23,14 @@ public class TitleCard implements Screen {
         camera.update();
 
         game.batch.begin();
-        game.font.draw(game.batch, "Bingo Bitch", 800 / 2, 480 / 2); 
-        game.batch.draw(game.img);
+        game.batch.draw(game.img, 0, 0, camera.viewportWidth, camera.viewportHeight);
+        game.font.draw(game.batch, "PRESS START", 800 / 2, 480 / 2); 
         game.batch.end();
+
+        if(Gdx.input.isTouched()) {
+            Gdx.app.log("Bing", "Going to level 1!");
+            game.setScreen(new LevelOne(game));
+        }
     }
 
     @Override
