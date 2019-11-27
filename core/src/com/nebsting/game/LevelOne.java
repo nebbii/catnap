@@ -30,7 +30,6 @@ public class LevelOne implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0.3f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
         
         // Controls
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -38,6 +37,8 @@ public class LevelOne implements Screen {
             toriyasu.jump();
         }
         toriyasu.gravity();
+
+        camera.update();
 
         game.batch.begin();
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);

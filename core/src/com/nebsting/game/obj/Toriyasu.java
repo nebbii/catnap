@@ -20,22 +20,24 @@ public class Toriyasu extends Rectangle {
 
     // Returns next position forced by gravity
     public void gravity() {
-        if((getY() < 0) && (getVspeed() <= 0)) {
+        Gdx.app.log("Gravity", Float.toString(this.getVspeed()));
+        
+        if(y < 0) {
             setY(0);
             setVspeed(0);
-        }
-        else {
-            setY(getY() - (vspeed * 2 ));
-            vspeed = (vspeed - 1f);
-        }
+        } else {
+            float result = vspeed*(vspeed+400);
+            y = (y + result) * Gdx.graphics.getDeltaTime();
 
-        Gdx.app.log("Gravity", "Current gravity is ");
-        Gdx.app.log("Gravity", Float.toString(this.getVspeed()));
+            vspeed--;
+        }
     }
     
     public void jump() {
-        setY(1);
-        setVspeed(getVspeed()+40);
+        if(y == 0) {
+            y += 1;
+            setVspeed(getVspeed()+20);
+        }
     }
 
     public int getHealth() {
