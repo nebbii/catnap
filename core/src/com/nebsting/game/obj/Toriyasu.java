@@ -22,7 +22,7 @@ public class Toriyasu extends Rectangle {
     public void gravity() {
         Gdx.app.log("Gravity", Float.toString(this.getVspeed()));
         
-        if(y < 0) {
+        if(y < 1) {
             setY(0);
             setVspeed(0);
         } else {
