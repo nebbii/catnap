@@ -38,10 +38,6 @@ public class LevelOne implements Screen {
         }
         toriyasu.gravity(delta);
 
-        Gdx.app.log("onFloor", Boolean.toString(toriyasu.onFloor()));
-        Gdx.app.log("Jumpframes", Integer.toString(toriyasu.jumpFrames));
-        Gdx.app.log("Jumpframes", Float.toString(toriyasu.getY()));
-
         camera.update();
 
         game.batch.begin();
