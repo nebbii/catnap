@@ -32,11 +32,15 @@ public class LevelOne implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         // Controls
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             Gdx.app.log("Bing", "Boing!");
-            toriyasu.jump();
+            toriyasu.jump(Gdx.input.isKeyJustPressed(Input.Keys.SPACE));
         }
         toriyasu.gravity();
+
+        Gdx.app.log("onFloor", Boolean.toString(toriyasu.onFloor()));
+        Gdx.app.log("Jumpframes", Integer.toString(toriyasu.jumpFrames));
+        Gdx.app.log("Jumpframes", Float.toString(toriyasu.getY()));
 
         camera.update();
 

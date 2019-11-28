@@ -7,37 +7,67 @@ import com.badlogic.gdx.math.Rectangle;
 public class Toriyasu extends Rectangle {
 
     int health;
-    int speed;
     float vspeed;
+    int jumpFrames;
 
     Texture sprite; 
 
     public Toriyasu() {
         sprite = new Texture(Gdx.files.internal("bucket.png"));
-        health = 100;
-        vspeed = 0;
+        health      = 100;
+        vspeed      = 0;
+        jumpFrames  = 0;
     }
 
     // Returns next position forced by gravity
     public void gravity() {
-        Gdx.app.log("Gravity", Float.toString(this.getVspeed()));
-        
-        if(y < 1) {
-            setY(0);
-            setVspeed(0);
-        } else {
-            float result = vspeed*(vspeed+400);
-            y = (y + result) * Gdx.graphics.getDeltaTime();
+        float delta = Gdx.graphics.getDeltaTime();
 
-            vspeed--;
+        if(this.getY() < 1) this.setY(0); 
+        if(this.jumpFrames > 0) this.jumpFrames -= 1; 
+
+        if(!this.onFloor() && this.getVspeed() < 24) {
+            this.increaseVspeed(1);
+
+            this.decreaseY((50 * vspeed) * delta);
+        } else {
+            this.setVspeed(0);
         }
     }
     
-    public void jump() {
-        if(y == 0) {
-            y += 1;
-            setVspeed(getVspeed()+20);
+    public void jump(boolean justPressed) {
+        float delta = Gdx.graphics.getDeltaTime();
+
+        // Start jump timer if just pressed
+        if(justPressed && onFloor()) {
+            Gdx.app.log("Jump", "Just jumped from the floor!");
+            jumpFrames += 40;
+            if(y==0) this.increaseY(1);
         }
+        if(!onFloor()) {
+            if(jumpFrames > 30) {
+                this.decreaseVspeed(100 * delta);
+            } 
+            else if(jumpFrames > 0) {
+                this.decreaseVspeed(50 * delta);
+            }
+        }
+    }
+
+    public boolean onFloor() {
+        if(y < 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void increaseY(float y) {
+        this.y += y;
+    }
+
+    public void decreaseY(float y) {
+        this.y -= y;
     }
 
     public int getHealth() {
@@ -48,14 +78,6 @@ public class Toriyasu extends Rectangle {
         this.health = health;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
     public float getVspeed() {
         return vspeed;
     }
@@ -64,11 +86,27 @@ public class Toriyasu extends Rectangle {
         this.vspeed = vspeed;
     }
 
+    public void increaseVspeed(float vspeed) {
+        this.vspeed += vspeed;
+    }
+
+    public void decreaseVspeed(float vspeed) {
+        this.vspeed -= vspeed;
+    }
+
     public Texture getSprite() {
         return sprite;
     }
 
     public void setSprite(Texture sprite) {
         this.sprite = sprite;
+    }
+
+    public void setJumpFrames(int jumpFrames) {
+        this.jumpFrames = jumpFrames;
+    }
+
+    public int getJumpFrames() {
+        return jumpFrames;
     }
 }
