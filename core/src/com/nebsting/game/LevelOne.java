@@ -34,9 +34,9 @@ public class LevelOne implements Screen {
         // Controls
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             Gdx.app.log("Bing", "Boing!");
-            toriyasu.jump(Gdx.input.isKeyJustPressed(Input.Keys.SPACE));
+            toriyasu.jump(delta, Gdx.input.isKeyJustPressed(Input.Keys.SPACE));
         }
-        toriyasu.gravity();
+        toriyasu.gravity(delta);
 
         Gdx.app.log("onFloor", Boolean.toString(toriyasu.onFloor()));
         Gdx.app.log("Jumpframes", Integer.toString(toriyasu.jumpFrames));

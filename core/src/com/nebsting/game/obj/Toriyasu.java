@@ -20,24 +20,27 @@ public class Toriyasu extends Rectangle {
     }
 
     // Returns next position forced by gravity
-    public void gravity() {
-        float delta = Gdx.graphics.getDeltaTime();
+    public void gravity(float delta) {
+        // Landing logic
+        if(this.getY() < 1)     this.setY(0); 
 
-        if(this.getY() < 1) this.setY(0); 
+        // Countdown jump frames
         if(this.jumpFrames > 0) this.jumpFrames -= 1; 
 
-        if(!this.onFloor() && this.getVspeed() < 24) {
-            this.increaseVspeed(1);
+        // Increase falling speed
+        if(!this.onFloor()) {
+            if(this.getVspeed() < 24) {
+                this.increaseVspeed(1);
+            }
 
             this.decreaseY((50 * vspeed) * delta);
         } else {
             this.setVspeed(0);
+            this.setJumpFrames(0);
         }
     }
     
-    public void jump(boolean justPressed) {
-        float delta = Gdx.graphics.getDeltaTime();
-
+    public void jump(float delta, boolean justPressed) {
         // Start jump timer if just pressed
         if(justPressed && onFloor()) {
             Gdx.app.log("Jump", "Just jumped from the floor!");
