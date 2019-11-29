@@ -29,7 +29,7 @@ public class Toriyasu extends Rectangle {
 
         // Increase falling speed
         if(!this.onFloor()) {
-            if(this.getVspeed() < 24) {
+            if(this.getVspeed() < 20) {
                 this.increaseVspeed(1);
             }
 
