@@ -34,7 +34,8 @@ public class Toriyasu extends Rectangle {
             }
 
             this.decreaseY((50 * vspeed) * delta);
-        } else {
+        } 
+        else {
             this.setVspeed(0);
             this.setJumpFrames(0);
         }
@@ -43,7 +44,6 @@ public class Toriyasu extends Rectangle {
     public void jump(float delta, boolean justPressed) {
         // Start jump timer if just pressed
         if(justPressed && onFloor()) {
-            Gdx.app.log("Jump", "Just jumped from the floor!");
             jumpFrames += 40;
             if(y==0) this.increaseY(1);
         }
