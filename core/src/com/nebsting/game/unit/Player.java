@@ -4,8 +4,12 @@ public class Player extends Unit {
 
     float runFrames;
 
+    Controller controller;
+
     public Player() {
         super();
+
+        this.controller = new Controller(this);
     }
 
     public void jump(float delta, boolean justPressed) {
@@ -26,6 +30,9 @@ public class Player extends Unit {
     }
 
     public void run(float delta, boolean justPressed) {
+        if(justPressed /* && this.onFloor() */) {
+            this.runFrames += 40;
+        }
 
     }
 
