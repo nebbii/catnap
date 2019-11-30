@@ -9,11 +9,12 @@ public class Unit extends Rectangle {
     float health;
     float vspeed;
     float weight;
-    float jumpFrames;
+    int jumpFrames;
 
     Texture sprite; 
 
     public Unit() {
+
     }
     
     // Returns next position forced by gravity
@@ -96,11 +97,11 @@ public class Unit extends Rectangle {
         this.weight = weight;
     }
 
-    public float getJumpFrames() {
+    public int getJumpFrames() {
         return jumpFrames;
     }
 
-    public void setJumpFrames(float jumpFrames) {
+    public void setJumpFrames(int jumpFrames) {
         this.jumpFrames = jumpFrames;
     }
 

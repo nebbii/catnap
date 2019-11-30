@@ -2,6 +2,8 @@ package com.nebsting.game;
 
 public class Player extends Unit {
 
+    float runFrames;
+
     public Player() {
         super();
     }
@@ -21,6 +23,10 @@ public class Player extends Unit {
                 this.decreaseVspeed(50 * delta);
             }
         }
+    }
+
+    public void run(float delta, boolean justPressed) {
+
     }
 
     public static Player getInstance() {
