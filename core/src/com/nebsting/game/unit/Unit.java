@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Unit extends Rectangle {
 
     float health;
+    float hspeed;
     float vspeed;
     float weight;
     int jumpFrames;
@@ -16,10 +17,22 @@ public class Unit extends Rectangle {
     public Unit() {
 
     }
+
+    public boolean onFloor() {
+        if(this.getY() < 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     // Returns next position forced by gravity
     public void gravity(float delta) {
         if(getY() < 1) setY(0); 
+
+        // wrap around LAL
+        //if(getX() < -100) setX(750); 
+        //if(getX() > 750) setX(-100); 
 
         // Countdown jump frames
         if(jumpFrames > 0) jumpFrames -= 1; 
@@ -41,12 +54,9 @@ public class Unit extends Rectangle {
         }
     }
 
-    public boolean onFloor() {
-        if(this.getY() < 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public void horizontalMove(float delta) {
+        Gdx.app.log("horizontalMove", Float.toString(getHspeed() * delta));
+        this.increaseX(getHspeed() * delta);
     }
 
     protected void increaseX(float x) {
@@ -65,6 +75,14 @@ public class Unit extends Rectangle {
         this.y -= y;
     }
     
+    public void increaseHspeed(float hspeed) {
+        this.hspeed += hspeed;
+    }
+
+    public void decreaseHspeed(float hspeed) {
+        this.hspeed -= hspeed;
+    }
+    
     public void increaseVspeed(float vspeed) {
         this.vspeed += vspeed;
     }
@@ -79,6 +97,14 @@ public class Unit extends Rectangle {
 
     public void setHealth(float health) {
         this.health = health;
+    }
+
+    public void setHspeed(float hspeed) {
+        this.hspeed = hspeed;
+    }
+
+    public float getHspeed() {
+        return hspeed;
     }
 
     public float getVspeed() {
