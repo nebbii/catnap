@@ -10,7 +10,7 @@ public class Toriyasu extends Player {
         super();
 
         this.health     = 100;
-        this.weight     = 40;
+        this.weight     = 50;
 
         this.sprite = new Texture(Gdx.files.internal("bucket.png"));
     }
