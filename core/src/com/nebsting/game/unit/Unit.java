@@ -6,12 +6,14 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Unit extends Rectangle {
 
-    int health;
+    float health;
     float vspeed;
-    int jumpFrames;
+    float weight;
+    float jumpFrames;
+
+    Texture sprite; 
 
     public Unit() {
-
     }
     
     // Returns next position forced by gravity
@@ -21,13 +23,16 @@ public class Unit extends Rectangle {
         // Countdown jump frames
         if(jumpFrames > 0) jumpFrames -= 1; 
 
+        //Gdx.app.log("Vspeed", Float.toString(this.getVspeed()));
+        //Gdx.app.log("jumpFrames", Float.toString(this.getJumpFrames()));
+
         // Increase falling speed
         if(!onFloor()) {
             if(getVspeed() < 20) {
                 increaseVspeed(1);
             }
 
-            decreaseY((50 * getVspeed()) * delta);
+            decreaseY((this.getWeight() * getVspeed()) * delta);
         } 
         else {
             setVspeed(0);
@@ -36,26 +41,26 @@ public class Unit extends Rectangle {
     }
 
     public boolean onFloor() {
-        if(y < 1) {
+        if(this.getY() < 1) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void increaseX(float x) {
+    protected void increaseX(float x) {
         this.x += x;
     }
 
-    public void decreaseX(float x) {
+    protected void decreaseX(float x) {
         this.x -= x;
     }
 
-    public void increaseY(float y) {
+    protected void increaseY(float y) {
         this.y += y;
     }
 
-    public void decreaseY(float y) {
+    protected void decreaseY(float y) {
         this.y -= y;
     }
     
@@ -67,28 +72,44 @@ public class Unit extends Rectangle {
         this.vspeed -= vspeed;
     }
 
-    public void setVspeed(float vspeed) {
-        this.vspeed = vspeed;
+    public float getHealth() {
+        return health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
     }
 
     public float getVspeed() {
         return vspeed;
     }
 
-    public int getHealth() {
-        return health;
+    public void setVspeed(float vspeed) {
+        this.vspeed = vspeed;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public float getWeight() {
+        return weight;
     }
 
-    public int getJumpFrames() {
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public float getJumpFrames() {
         return jumpFrames;
     }
 
-    public void setJumpFrames(int jumpFrames) {
+    public void setJumpFrames(float jumpFrames) {
         this.jumpFrames = jumpFrames;
+    }
+
+    public void setSprite(Texture sprite) {
+        this.sprite = sprite;
+    }
+
+    public Texture getSprite() {
+        return sprite;
     }
 }
 
