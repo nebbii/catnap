@@ -12,7 +12,7 @@ public class Toriyasu extends Player {
         this.health     = 100;
         this.weight     = 50;
 
-        this.sprite = new Texture(Gdx.files.internal("bucket.png"));
+        this.sprite = new Texture(Gdx.files.internal("cfang stand.gif"));
     }
 
 }
