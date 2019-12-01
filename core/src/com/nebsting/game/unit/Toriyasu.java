@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Toriyasu extends Player {
 
     Texture standSheet;
-    Animation<TextureRegion> standingAnimation;
+    Animation<TextureRegion> standAnimation;
 
     public Toriyasu() {
         super();
@@ -28,16 +28,16 @@ public class Toriyasu extends Player {
 
         // Animations
         standSheet = new Texture(Gdx.files.internal("obj/cfang/standloop_t.png"));
-        this.standingAnimation = initStandingAnimation();
+        this.standAnimation = initStandAnimation();
     }
 
     public void logic(float delta) {
         super.logic(delta);
 
-        this.sprite = standingAnimation.getKeyFrame(delta, true);
+        this.sprite = standAnimation.getKeyFrame(delta, true);
     }
 
-    public Animation<TextureRegion> initStandingAnimation() {
+    public Animation<TextureRegion> initStandAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(standSheet, 
                 this.standSheet.getWidth() / 5, 1);
 
@@ -46,8 +46,6 @@ public class Toriyasu extends Player {
         for(int i = 0; i < 5; i++) {
             standFrames[i] = tmp[i][0];
         }
-
-        Gdx.app.log("Generated standframes", Arrays.toString(standFrames));
 
         return new Animation<TextureRegion>(0.025f, standFrames);
     }

@@ -35,6 +35,8 @@ public class LevelOne extends Level {
         shapeRenderer.rect(toriyasu.x, toriyasu.y, toriyasu.getWidth(), toriyasu.getHeight());
         shapeRenderer.end();
 
+        //Gdx.app.log("Generated standframes", toriyasu.sprite.toString());
+
         game.batch.begin();
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);
         game.batch.end();
