@@ -34,7 +34,7 @@ public class Toriyasu extends Player {
     public void logic(float delta) {
         super.logic(delta);
 
-        this.sprite = standAnimation.getKeyFrame(delta, true);
+        this.sprite = standSheet; 
     }
 
     public Animation<TextureRegion> initStandAnimation() {

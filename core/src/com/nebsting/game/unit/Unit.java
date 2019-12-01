@@ -13,7 +13,7 @@ public class Unit extends Rectangle {
     float weight;
     int jumpFrames;
 
-    TextureRegion sprite; 
+    Texture sprite; 
 
     public Unit() {
 
@@ -129,12 +129,5 @@ public class Unit extends Rectangle {
         this.jumpFrames = jumpFrames;
     }
 
-    public TextureRegion getSprite() {
-        return sprite;
-    }
-
-    public void setSprite(TextureRegion sprite) {
-        this.sprite = sprite;
-    }
 }
 
