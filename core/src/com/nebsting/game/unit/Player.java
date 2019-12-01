@@ -41,14 +41,7 @@ public class Player extends Unit {
         if(!(input[0] && input[1])
                 && this.getHspeed() < 400
                 && this.getHspeed() > -400) {
-            if(this.getRunFrames() > 35) { 
-                if(input[0]) this.decreaseHspeed(500 * delta);
-                if(input[1]) this.increaseHspeed(500 * delta);
-            }
-            else { 
-                if(input[0]) this.decreaseHspeed(700 * delta);
-                if(input[1]) this.increaseHspeed(700 * delta);
-            }
+            this.runAccel(delta, input);
         } 
 
         // Decelerating
@@ -69,6 +62,17 @@ public class Player extends Unit {
         }
 
         this.increaseX(getHspeed() * delta);
+    }
+
+    public void runAccel(float delta, Boolean[] input) {
+        if(this.getRunFrames() > 35) { 
+            if(input[0]) this.decreaseHspeed(500 * delta);
+            if(input[1]) this.increaseHspeed(500 * delta);
+        }
+        else { 
+            if(input[0]) this.decreaseHspeed(700 * delta);
+            if(input[1]) this.increaseHspeed(700 * delta);
+        }
     }
 
     public static Player getInstance() {
