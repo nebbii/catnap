@@ -66,11 +66,11 @@ public class Player extends Unit {
 
     public void runDecel(float delta, Boolean[] input) {
         float decelFormula = 1500 * delta;
-        float nextSpeedl = this.getHspeed() - decelFormula;
-        float nextSpeedr = this.getHspeed() + decelFormula;
+        float nextSpeedL = this.getHspeed() - decelFormula;
+        float nextSpeedR = this.getHspeed() + decelFormula;
 
         if(!input[0] && (this.getHspeed() < 0)) {
-            if(nextSpeedr < 0) {
+            if(nextSpeedR < 0) {
                 this.increaseHspeed(decelFormula); 
             }
             else {
@@ -79,7 +79,7 @@ public class Player extends Unit {
         }
 
         if(!input[1] && (this.getHspeed() > 0)) {
-            if(nextSpeedl > 0) {
+            if(nextSpeedL > 0) {
                 this.decreaseHspeed(decelFormula); 
             }
             else {
