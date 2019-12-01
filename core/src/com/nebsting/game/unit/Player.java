@@ -38,8 +38,7 @@ public class Player extends Unit {
         }
 
         // Accelerating run
-        if(this.onFloor() 
-                && !(input[0] && input[1])
+        if(!(input[0] && input[1])
                 && this.getHspeed() < 400
                 && this.getHspeed() > -400) {
             if(this.getRunFrames() > 35) { 
@@ -50,19 +49,17 @@ public class Player extends Unit {
                 if(input[0]) this.decreaseHspeed(700 * delta);
                 if(input[1]) this.increaseHspeed(700 * delta);
             }
-            Gdx.app.log("HSPEED", Float.toString(this.getHspeed()));
         } 
+
         // Decelerating
-        if(!input[0] && ( this.getHspeed() <= 0 )) {
-            Gdx.app.log("Decel step", Float.toString((this.getHspeed() - 1500 * delta)));
-            if( (this.getHspeed() - 1500 * delta) < 0) {
+        if(!input[0] && ( this.getHspeed() < 0 )) {
+            if((this.getHspeed() + (1500 * delta)) < 0) {
                 this.increaseHspeed(1500 * delta); 
-            } 
-            else {
+            } else {
                 this.setHspeed(0);
             }
         }
-        if(!input[1] && ( this.getHspeed() >= 0 )) { 
+        if(!input[1] && ( this.getHspeed() > 0 )) { 
             if( (this.getHspeed() + 1500 * delta) > 0) {
                 this.decreaseHspeed(1500 * delta); 
             }
