@@ -2,6 +2,7 @@ package com.nebsting.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Unit extends Rectangle {
@@ -12,7 +13,7 @@ public class Unit extends Rectangle {
     float weight;
     int jumpFrames;
 
-    Texture sprite; 
+    TextureRegion sprite; 
 
     public Unit() {
 
@@ -24,6 +25,11 @@ public class Unit extends Rectangle {
         } else {
             return false;
         }
+    }
+
+    // Gets run every frame
+    public void logic(float delta) {
+        this.gravity(delta);
     }
     
     // Returns next position forced by gravity
@@ -131,12 +137,12 @@ public class Unit extends Rectangle {
         this.jumpFrames = jumpFrames;
     }
 
-    public void setSprite(Texture sprite) {
-        this.sprite = sprite;
+    public TextureRegion getSprite() {
+        return sprite;
     }
 
-    public Texture getSprite() {
-        return sprite;
+    public void setSprite(TextureRegion sprite) {
+        this.sprite = sprite;
     }
 }
 
