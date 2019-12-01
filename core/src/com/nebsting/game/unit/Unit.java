@@ -43,9 +43,6 @@ public class Unit extends Rectangle {
         // Countdown jump frames
         if(jumpFrames > 0) jumpFrames -= 1; 
 
-        //Gdx.app.log("Vspeed", Float.toString(this.getVspeed()));
-        //Gdx.app.log("jumpFrames", Float.toString(this.getJumpFrames()));
-
         // Increase falling speed
         if(!onFloor()) {
             if(getVspeed() < 20) {
@@ -58,11 +55,6 @@ public class Unit extends Rectangle {
             setVspeed(0);
             setJumpFrames(0);
         }
-    }
-
-    public void horizontalMove(float delta) {
-        Gdx.app.log("horizontalMove", Float.toString(getHspeed() * delta));
-        this.increaseX(getHspeed() * delta);
     }
 
     protected void increaseX(float x) {
