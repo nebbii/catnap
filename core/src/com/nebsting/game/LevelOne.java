@@ -16,10 +16,6 @@ public class LevelOne extends Level {
         super(game);
 
         toriyasu = new Toriyasu();
-        toriyasu.x = 800 / 2;
-        toriyasu.y = 0;
-        toriyasu.width = 64;
-        toriyasu.height = 64;
     }
 
     public void render(float delta) {
