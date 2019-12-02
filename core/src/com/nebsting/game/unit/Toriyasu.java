@@ -10,7 +10,9 @@ public class Toriyasu extends Player {
 
     Texture standSheet;
     Animation<TextureRegion> standAnimation;
-    float standTimer;
+    Texture walkSheet;
+    Animation<TextureRegion> walkAnimation;
+    float animationTimer;
 
     public Toriyasu() {
         super();
@@ -26,16 +28,39 @@ public class Toriyasu extends Player {
         weight     = 50;
 
         // Animations
-        standSheet = new Texture(Gdx.files.internal("obj/cfang/standloop.png"));
+        animationTimer = 0f;
+
+        standSheet = new Texture(Gdx.files.internal("obj/cfang/standsheet.png"));
         standAnimation = initStandAnimation();
-        standTimer = 0f;
+
+        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walksheet.png"));
+        walkAnimation = initWalkAnimation();
     }
 
     public void logic(float delta) {
         super.logic(delta);
 
-        standTimer += delta;
-        this.sprite = standAnimation.getKeyFrame(standTimer, true); 
+        animationTimer += delta;
+        setCurrentSprite(animationTimer);
+    }
+
+    public void setCurrentSprite(float timer) {
+        // Idle
+        if(this.getHspeed() == 0)   this.sprite = standAnimation.getKeyFrame(timer, true);
+
+        // Walk left
+        if(this.getHspeed() < 0) {
+            TextureRegion frame = walkAnimation.getKeyFrame(timer, true);
+            if(!frame.isFlipX()) frame.flip(true,false);
+            this.sprite = frame; 
+        }
+
+        // Walk right
+        if(this.getHspeed() > 0) {
+            TextureRegion frame = walkAnimation.getKeyFrame(timer, true);
+            if(frame.isFlipX()) frame.flip(true,false);
+            this.sprite = walkAnimation.getKeyFrame(timer, true); 
+        }
     }
 
     public Animation<TextureRegion> initStandAnimation() {
@@ -44,10 +69,25 @@ public class Toriyasu extends Player {
 
         // Do frames
         TextureRegion[] standFrames = new TextureRegion[] {
-            tmp[0][0], tmp[0][0], tmp[0][0], tmp[0][0], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][4], tmp[0][3], tmp[0][2], tmp[0][1]
+            tmp[0][1], tmp[0][1], tmp[0][1], tmp[0][1], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][4], tmp[0][3], tmp[0][2], tmp[0][1]
         };
 
         return new Animation<TextureRegion>(0.150f,standFrames);
+    }
+
+    public Animation<TextureRegion> initWalkAnimation() {
+        TextureRegion[][] tmp = TextureRegion.split(walkSheet, 
+                this.walkSheet.getWidth() / 4, this.walkSheet.getHeight() / 2);
+
+        // Do frames
+        TextureRegion[] frames = new TextureRegion[8];
+        int index = 0;
+        for(int i=0;i<2;i++) {
+            for(int j=0;j<4;j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        return new Animation<TextureRegion>(0.075f,frames);
     }
 
 }
