@@ -40,13 +40,15 @@ public class Toriyasu extends Player {
     public void logic(float delta) {
         super.logic(delta);
 
+        toriyasu.controller.checkPresses(delta);
+
         animationTimer += delta;
         setCurrentSprite(animationTimer);
     }
 
     public void setCurrentSprite(float timer) {
         // Idle
-        if(this.getHspeed() == 0)   this.sprite = standAnimation.getKeyFrame(timer, true);
+        if(this.getHspeed() == 0) this.sprite = standAnimation.getKeyFrame(timer, true);
 
         // Walk left
         if(this.getHspeed() < 0) {

@@ -26,9 +26,6 @@ public class LevelOne extends Level {
     public void render(float delta) {
         super.render(delta);
 
-        toriyasu.controller.checkPresses(delta);
-
-        // Update objects
         toriyasu.logic(delta);
 
         game.batch.begin();
