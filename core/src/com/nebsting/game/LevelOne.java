@@ -28,7 +28,7 @@ public class LevelOne extends Level {
 
         toriyasu.controller.checkPresses(delta);
 
-        // Gravity
+        // Update objects
         toriyasu.logic(delta);
 
         shapeRenderer.begin(ShapeType.Line);

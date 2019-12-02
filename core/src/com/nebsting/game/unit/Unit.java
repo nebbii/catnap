@@ -13,7 +13,7 @@ public class Unit extends Rectangle {
     float weight;
     int jumpFrames;
 
-    Texture sprite; 
+    TextureRegion sprite; 
 
     public Unit() {
 

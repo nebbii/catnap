@@ -12,6 +12,7 @@ public class Toriyasu extends Player {
 
     Texture standSheet;
     Animation<TextureRegion> standAnimation;
+    float standTimer;
 
     public Toriyasu() {
         super();
@@ -28,13 +29,15 @@ public class Toriyasu extends Player {
 
         // Animations
         standSheet = new Texture(Gdx.files.internal("obj/cfang/standloop_t.png"));
-        this.standAnimation = initStandAnimation();
+        standAnimation = initStandAnimation();
+        standTimer = 0f;
     }
 
     public void logic(float delta) {
         super.logic(delta);
 
-        this.sprite = standSheet; 
+        standTimer += delta;
+        this.sprite = standAnimation.getKeyFrame(standTimer, true); 
     }
 
     public Animation<TextureRegion> initStandAnimation() {
