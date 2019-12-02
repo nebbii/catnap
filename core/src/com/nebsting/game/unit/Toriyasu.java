@@ -37,16 +37,16 @@ public class Toriyasu extends Player {
         super.logic(delta);
 
         standTimer += delta;
-        this.sprite = standAnimation.getKeyFrame(standTimer, true); 
+        this.sprite = standAnimation.getKeyFrame(0, true); 
     }
 
     public Animation<TextureRegion> initStandAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(standSheet, 
-                this.standSheet.getWidth() / 5, 1);
+                this.standSheet.getWidth() / 5, this.standSheet.getHeight() / 1);
 
         TextureRegion[] standFrames = new TextureRegion[5];
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 1; i++) {
             standFrames[i] = tmp[i][0];
         }
 
