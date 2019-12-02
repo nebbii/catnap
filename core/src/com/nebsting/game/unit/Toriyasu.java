@@ -18,8 +18,8 @@ public class Toriyasu extends Player {
         // Rect
         x = 800 / 2;
         y = 0;
-        width = 128;
-        height = 128;
+        width = 100;
+        height = 100;
 
         // Unit
         health     = 100;
