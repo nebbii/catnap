@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 
-import java.util.Arrays;
 
 public class Toriyasu extends Player {
 
@@ -28,7 +26,7 @@ public class Toriyasu extends Player {
         weight     = 50;
 
         // Animations
-        standSheet = new Texture(Gdx.files.internal("obj/cfang/standloop_t.png"));
+        standSheet = new Texture(Gdx.files.internal("obj/cfang/standloop.png"));
         standAnimation = initStandAnimation();
         standTimer = 0f;
     }
@@ -37,20 +35,19 @@ public class Toriyasu extends Player {
         super.logic(delta);
 
         standTimer += delta;
-        this.sprite = standAnimation.getKeyFrame(0, true); 
+        this.sprite = standAnimation.getKeyFrame(standTimer, true); 
     }
 
     public Animation<TextureRegion> initStandAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(standSheet, 
                 this.standSheet.getWidth() / 5, this.standSheet.getHeight() / 1);
 
-        TextureRegion[] standFrames = new TextureRegion[5];
+        // Do frames
+        TextureRegion[] standFrames = new TextureRegion[] {
+            tmp[0][0], tmp[0][0], tmp[0][0], tmp[0][0], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][4], tmp[0][3], tmp[0][2], tmp[0][1]
+        };
 
-        for(int i = 0; i < 1; i++) {
-            standFrames[i] = tmp[i][0];
-        }
-
-        return new Animation<TextureRegion>(0.025f, standFrames);
+        return new Animation<TextureRegion>(0.150f,standFrames);
     }
 
 }
