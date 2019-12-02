@@ -31,10 +31,6 @@ public class LevelOne extends Level {
         // Update objects
         toriyasu.logic(delta);
 
-        shapeRenderer.begin(ShapeType.Line);
-        shapeRenderer.rect(toriyasu.x, toriyasu.y, toriyasu.getWidth(), toriyasu.getHeight());
-        shapeRenderer.end();
-
         game.batch.begin();
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);
         game.batch.end();
