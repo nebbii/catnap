@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="35">
+ <tileset firstgid="1" name="NES - Super Mario Bros - Tileset" tilewidth="16" tileheight="16" tilecount="924" columns="33">
+  <image source="../../../../MarioBros/core/assets/NES - Super Mario Bros - Tileset.png" width="528" height="448"/>
+ </tileset>
+ <layer name="Background" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztwzEJAAAMA7Ay/4bqrir2JZBeUlVVVVVVVVVVVVVV1ccDxULniQ==
+  </data>
+ </layer>
+ <layer name="Graphics" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt10ESgyAMQNHYnT0Gy3ppx+v1EtUtBkyEquh/M9k4bj8QEdQyvtYDoA1av6kBcB20C7SLfnEXXTRPQL/APsH53aOfD6C34RDK9TrRMKAKku+3tOHP3O5gfERwBwN2QWz9ljT8j34n+sVFWHfd2jtxEF+/loa1t7LWb403NXcxniru0trvVsNaq9Zvi2+3f4AS1jvlbFqTnn5zDR/dL1CLZ887S6pHb7+p/0v7BY4W76UMw7QzP7wWYO4=
+  </data>
+ </layer>
+ <objectgroup name="Ground">
+  <object id="7" x="256" y="128" width="64" height="16"/>
+  <object id="8" x="336" y="64" width="64" height="16"/>
+  <object id="9" x="416" y="128" width="64" height="16"/>
+  <object id="10" x="32" y="160" width="32" height="32"/>
+  <object id="12" x="0" y="192" width="3840" height="16"/>
+ </objectgroup>
+ <objectgroup name="Pipes">
+  <object id="31" x="848" y="160" width="32" height="32"/>
+  <object id="32" x="1072" y="128" width="32" height="64"/>
+  <object id="33" x="1152" y="80" width="32" height="112"/>
+  <object id="34" x="1232" y="128" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup name="Coins"/>
+ <objectgroup name="Bricks">
+  <object id="15" x="752" y="112" width="48" height="80"/>
+  <object id="17" x="688" y="176" width="16" height="16"/>
+  <object id="18" x="704" y="160" width="16" height="32"/>
+  <object id="19" x="720" y="144" width="16" height="48"/>
+  <object id="20" x="736" y="128" width="16" height="64"/>
+  <object id="21" x="768" y="96" width="32" height="16"/>
+  <object id="22" x="784" y="80" width="16" height="16"/>
+  <object id="23" x="880" y="80" width="16" height="112"/>
+  <object id="24" x="896" y="96" width="16" height="96"/>
+  <object id="25" x="912" y="112" width="16" height="80"/>
+  <object id="26" x="928" y="128" width="16" height="64"/>
+  <object id="27" x="944" y="144" width="16" height="48"/>
+  <object id="28" x="960" y="160" width="16" height="32"/>
+  <object id="30" x="976" y="176" width="16" height="16"/>
+ </objectgroup>
+</map>
