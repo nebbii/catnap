@@ -40,7 +40,7 @@ public class Toriyasu extends Player {
     public void logic(float delta) {
         super.logic(delta);
 
-        toriyasu.controller.checkPresses(delta);
+        this.controller.checkPresses(delta);
 
         animationTimer += delta;
         setCurrentSprite(animationTimer);
