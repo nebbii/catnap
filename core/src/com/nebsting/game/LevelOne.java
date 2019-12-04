@@ -10,8 +10,6 @@ import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class LevelOne extends Level {
 
-    OrthographicCamera camera;
-
     Toriyasu toriyasu;
 
     ShapeRenderer shapeRenderer;

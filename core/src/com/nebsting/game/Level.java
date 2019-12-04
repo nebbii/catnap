@@ -3,19 +3,23 @@ package com.nebsting.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Level implements Screen {
 
     final Catnap game;
 
-    OrthographicCamera camera;
+    Viewport viewport;
+    Camera camera;
 
     public Level(final Catnap game) {
         this.game = game;
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera = new PerspectiveCamera();
+        viewport = new FitViewport(960, 720, camera);
     }
 
     @Override
@@ -23,7 +27,6 @@ public class Level implements Screen {
         Gdx.gl.glClearColor(0, 0, 0.3f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
     }
 
     @Override
@@ -39,7 +42,8 @@ public class Level implements Screen {
     }
 
     @Override
-    public void resize(int i1, int i2) {
+    public void resize(int w, int h) {
+        viewport.update(w, h);
     }
 
     @Override
