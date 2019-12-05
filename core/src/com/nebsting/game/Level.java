@@ -27,11 +27,11 @@ public class Level implements Screen {
         camera = new PerspectiveCamera();
         viewport = new FitViewport(960, 720, camera);
 
-        //maploader = new TmxMapLoader();
-        //map = maploader.load("level/test.tmx");
-        //renderer = new OrthogonalTiledMapRenderer(map);
+        maploader = new TmxMapLoader();
+        map = maploader.load("level/test.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
 
-        //camera.position.set(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2, 0);
+        camera.position.set(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2, 0);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Level implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //renderer.render();
+        renderer.render();
     }
 
     @Override
