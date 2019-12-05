@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="50" tileheight="50" nextobjectid="7">
+ <tileset firstgid="1" source="tilesets/test2tiled.tsx"/>
+ <layer name="Tile Layer 1" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2EUTFmQAhVEaJaS7O6W7u7tEJCWlu6W7u0HpRgkBkVakWyWU7rC7Pe79foAz7505+2d9o0aJEiUa0YlBTGIRmxd4kTjEJR7xeYkEJCQRiUlCUpKRnBSkJBWpSUNa0pGeDGQkE5nJQlaykZ0c5CQXUUNjaAyN/9mYmzzk5WXykZ8CFKQQhSlCUYpRnBKUpBSlKUNZylGeClSkEpWpQlWqUZ0a1KQWtalDXepRnwY0pFFoDI2hMWJjY5rQlGa8QnNepQWv0ZJWtKYNbWnH67SnAx3pRGe68AZd6UZ3etCTXvSmD33pR38GMJBBDGYIQxkWGkNjaIzYOJw3GcFIRjGaMYxlHOOZwEQmMZkpTGUa05nBTGYxmznMZR7zWcBCFrGYJSxlGctZwVu8zUpWsZo1oTE0hsaIjWtZx3o2sJFNbGYLW9nGO7zLdnawk128x272sJf32ccH7OcABznEYY5wlA/5iGN8zHFOcJJTnOYMZ0NjaAyNERvPcZ4LXOQSl/mET/mMK1zlGtf5nC+4wU1ucZs73OUe93nAQx7xmCc85RnP+ZKv+Jpv+Jbv+J4f+JGfQmNoDI0RG3/mF37lN37nD/7kL/7m38MtKtGITgxiEovYvMCLxCEu8YjPSyQgIYlITBKSkozkpCAlqUhNGtKSjvRkiBoaQ2NojNSYkUxkJgtZyUZ2cpCTXOQmD3l5mXzkpwAFKURhilCUYhSnBCUpRWnKUJZylKcCFalEZapQlWpUp0ZoDI2hMWJjTWpRmzrUpR71aUBDGtGYJjSlGa/QnFdpwWu0pBWtaUNb2vE67elARzrRmS68QVe60Z0e9KQXvekTGkNjaIzY2Jd+9GcAAxnEYIYwlGEM501GMJJRjGYMYxnHeCYwkUlMZgpTmcZ0ZjCTWcxmDnOZx3wWsJBFLGZJaAyNoTFi41KWsZwVvMXbrGQVq1nDWtaxng1sZBOb2cJWtvEO77KdHexkF++xmz3s5X328QH7OcBBDnGYIxzlw9AYGkNjxMaPOMbHHOcEJznFac5wlnOc5wIXucRlPuFTPuMKV7nGdT7nC25wk1vc5g53ucd9HvCQRzzmCU95xvPQGBpDY8TGsLCw/+/+AS6ca+o=
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" x="10" y="439">
+   <polyline points="0,0 44,-14 94,9 133,75 253,73 307,52 369,77 412,122 468,133 566,95 621,104 764,154 859,152 1010,106 1113,122 1182,125 1202,52 1242,37 1287,86 1345,121 1422,111 1509,114 1603,152 1668,150 1716,138 1803,149 2042,148"/>
+  </object>
+  <object id="2" x="589" y="290">
+   <polyline points="0,0 278,44 281,72 -5,39 0,4"/>
+  </object>
+  <object id="4" x="995" y="258">
+   <polyline points="0,0 214,6 234,-17 0,-40 3,-2"/>
+  </object>
+  <object id="5" x="1341" y="299">
+   <polyline points="0,0 200,-6 309,27 311,53 16,27 -1,-1"/>
+  </object>
+  <object id="6" x="1802" y="337">
+   <polyline points="0,0 245,40 248,89 71,113 -38,82 -57,30 -4,0"/>
+  </object>
+ </objectgroup>
+</map>
