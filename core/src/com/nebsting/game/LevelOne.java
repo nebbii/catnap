@@ -33,12 +33,17 @@ public class LevelOne extends Level {
 
         toriyasu.logic(delta);
 
-        camera.position.set(toriyasu.x, 350, 0);
+        camera.position.set(toriyasu.x + (toriyasu.getWidth() / 2), 350, 0);
 
         game.batch.begin();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);
         game.batch.end();
+    }
+
+    public void dispose() {
+        game.batch.dispose();
+        tiledMap.dispose();
     }
 }
 
