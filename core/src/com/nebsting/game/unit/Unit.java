@@ -13,10 +13,12 @@ public class Unit extends Rectangle {
     float weight;
     int jumpFrames;
 
+    char lastDirection; // l & r
+
     TextureRegion sprite; 
 
     public Unit() {
-
+        this.lastDirection = 'r';
     }
 
     public boolean onFloor() {

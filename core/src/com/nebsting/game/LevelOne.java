@@ -35,9 +35,9 @@ public class LevelOne extends Level {
 
         toriyasu.logic(delta);
 
-        renderer.render();
-
         camera.update();
+
+        renderer.render();
 
         game.batch.begin();
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);

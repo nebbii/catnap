@@ -48,19 +48,34 @@ public class Toriyasu extends Player {
 
     public void setCurrentSprite(float timer) {
         // Idle
-        if(this.getHspeed() == 0) this.sprite = standAnimation.getKeyFrame(timer, true);
+        if(this.getHspeed() == 0) {
+            TextureRegion frame = standAnimation.getKeyFrame(timer, true);
+
+            if( (this.lastDirection != 'l') && frame.isFlipX() ) frame.flip(true,false);
+            if( (this.lastDirection != 'r') && !frame.isFlipX() ) frame.flip(true,false);
+
+            this.sprite = frame; 
+        }
 
         // Walk left
         if(this.getHspeed() < 0) {
             TextureRegion frame = walkAnimation.getKeyFrame(timer, true);
+
+            // Flip logic
             if(!frame.isFlipX()) frame.flip(true,false);
+            if(this.lastDirection != 'l') this.lastDirection = 'l';
+
             this.sprite = frame; 
         }
 
         // Walk right
         if(this.getHspeed() > 0) {
             TextureRegion frame = walkAnimation.getKeyFrame(timer, true);
+            
+            // Flip logic
             if(frame.isFlipX()) frame.flip(true,false);
+            if(this.lastDirection != 'r') this.lastDirection = 'r';
+
             this.sprite = walkAnimation.getKeyFrame(timer, true); 
         }
     }
