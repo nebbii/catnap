@@ -24,8 +24,8 @@ public class Toriyasu extends Player {
         height = 100;
 
         // Unit
-        health     = 100;
-        weight     = 50;
+        health = 100;
+        weight = 50;
 
         // Animations
         animationTimer = 0f;
