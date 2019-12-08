@@ -18,6 +18,8 @@ public class LevelOne extends Level {
         super(game);
 
         toriyasu = new Toriyasu();
+        toriyasu.x = 300;
+        toriyasu.y = 200;
 
         tiledMap = new TmxMapLoader().load("level/testLevel2.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
@@ -26,13 +28,15 @@ public class LevelOne extends Level {
     public void render(float delta) {
         super.render(delta);
 
-        camera.update();
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
 
         toriyasu.logic(delta);
 
+        camera.position.set(toriyasu.x, 350, 0);
+
         game.batch.begin();
+        game.batch.setProjectionMatrix(camera.combined);
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);
         game.batch.end();
     }
