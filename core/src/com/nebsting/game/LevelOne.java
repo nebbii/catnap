@@ -11,28 +11,15 @@ public class LevelOne extends Level {
 
     Toriyasu toriyasu;
 
-    OrthographicCamera camera;
-
-    // Map
-    TmxMapLoader tmxLoader;
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
 
     public LevelOne(final Catnap game) {
         super(game);
 
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-
         toriyasu = new Toriyasu();
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, w, h);
-        camera.update();
-
-        // Load map
-        tmxLoader = new TmxMapLoader();
-        tiledMap = tmxLoader.load("level/testLevel2.tmx");
+        tiledMap = new TmxMapLoader().load("level/testLevel2.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
 

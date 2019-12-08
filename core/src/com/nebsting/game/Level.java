@@ -15,6 +15,13 @@ public class Level implements Screen {
 
     public Level(final Catnap game) {
         this.game = game;
+
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, w, h);
+        camera.update();
     }
 
     @Override
