@@ -17,16 +17,10 @@ public class Level implements Screen {
     final Catnap game;
 
     Viewport viewport;
-    Camera camera;
-    TmxMapLoader loader;
+    OrthographicCamera camera;
 
     public Level(final Catnap game) {
         this.game = game;
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(960, 720, camera);
-
-        loader = new TmxMapLoader();
-        camera.position.set(viewport.getScreenWidth() / 2, viewport.getScreenHeight() / 2, 0);
     }
 
     @Override
@@ -49,7 +43,6 @@ public class Level implements Screen {
 
     @Override
     public void resize(int w, int h) {
-        viewport.update(w, h);
     }
 
     @Override

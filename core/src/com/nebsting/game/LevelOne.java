@@ -8,36 +8,47 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class LevelOne extends Level {
 
     Toriyasu toriyasu;
 
-    ShapeRenderer shapeRenderer;
+    OrthographicCamera camera;
 
-    // Level
-    OrthogonalTiledMapRenderer renderer;
-    TiledMap testLevel2;
+    // Map
+    TmxMapLoader tmxLoader;
+    TiledMap tiledMap;
+    TiledMapRenderer tiledMapRenderer;
 
     public LevelOne(final Catnap game) {
         super(game);
 
-        toriyasu = new Toriyasu();
-        shapeRenderer = new ShapeRenderer();
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
 
-        testLevel2 = loader.load("level/testLevel2.tmx");
-        renderer = new OrthogonalTiledMapRenderer(testLevel2);
+        toriyasu = new Toriyasu();
+
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, w, h);
+        camera.update();
+
+        // Load map
+        tmxLoader = new TmxMapLoader();
+        tiledMap = tmxLoader.load("level/testLevel2.tmx");
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
 
     public void render(float delta) {
         super.render(delta);
 
-        toriyasu.logic(delta);
-
         camera.update();
+        tiledMapRenderer.setView(camera);
+        tiledMapRenderer.render();
 
-        renderer.render();
+        toriyasu.logic(delta);
 
         game.batch.begin();
         game.batch.draw(toriyasu.sprite, toriyasu.x, toriyasu.y);
