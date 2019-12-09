@@ -68,8 +68,6 @@ public class Level implements Screen {
             Gdx.app.log("Obj", i.toString());
         }
 
-        Gdx.app.log("Obj", "Bing");
-
         toriyasu.logic(delta);
 
         camera.position.set(toriyasu.x + (toriyasu.getWidth() / 2), 350, 0);
