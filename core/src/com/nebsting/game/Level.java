@@ -4,11 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import java.util.Arrays;
 
 public class Level implements Screen {
 
@@ -19,25 +26,33 @@ public class Level implements Screen {
 
     Toriyasu toriyasu;
 
-    TiledMap tiledMap;
-    TiledMapRenderer tiledMapRenderer;
+    TiledMap map;
+    TiledMapRenderer mapRenderer;
+    MapLayer mapCollision;
+    MapObjects mapCollisionObjects;
 
-    public Level(final Catnap game, String map, float playerX, float playerY) {
+    public Level(final Catnap game, String mapFileName, int mapCollisionLayer, float playerX, float playerY) {
         this.game = game;
-
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
+        // Character
         toriyasu = new Toriyasu();
         toriyasu.x = playerX;
         toriyasu.y = playerY;
 
-        tiledMap = new TmxMapLoader().load("level/" + map + ".tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        // Map
+        map = new TmxMapLoader().load("level/" + mapFileName + ".tmx");
+        mapRenderer = new OrthogonalTiledMapRenderer(map);
 
+        // Collision
+        mapCollision = map.getLayers().get(mapCollisionLayer);
+        mapCollisionObjects = mapCollision.getObjects();
+
+
+        // Camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
-        camera.update();
     }
 
     @Override
@@ -45,8 +60,15 @@ public class Level implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        tiledMapRenderer.setView(camera);
-        tiledMapRenderer.render();
+        mapRenderer.setView(camera);
+        mapRenderer.render();
+
+        for (RectangleMapObject rectangleObject : mapCollisionObjects.getByType(RectangleMapObject.class)) {
+            Rectangle i = rectangleObject.getRectangle();
+            Gdx.app.log("Obj", i.toString());
+        }
+
+        Gdx.app.log("Obj", "Bing");
 
         toriyasu.logic(delta);
 
@@ -63,7 +85,7 @@ public class Level implements Screen {
     @Override
     public void dispose() {
         game.batch.dispose();
-        tiledMap.dispose();
+        map.dispose();
     }
 
     @Override
