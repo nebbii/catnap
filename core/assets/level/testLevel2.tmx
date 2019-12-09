@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="50" tileheight="50" nextobjectid="7">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="115" height="16" tilewidth="50" tileheight="50" nextobjectid="7">
  <tileset firstgid="1" source="tilesets/test2tiled.tsx"/>
- <layer name="Tile Layer 1" width="240" height="13">
+ <layer name="Tile Layer 1" width="115" height="16" offsetx="40" offsety="-88">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Object Layer 1">
-  <object id="1" x="10" y="439">
+ <objectgroup name="Object Layer 1" offsetx="40" offsety="-89.3333">
+  <object id="1" x="7" y="634">
    <polyline points="0,0 44,-14 94,9 133,75 253,73 307,52 369,77 412,122 468,133 566,95 621,104 764,154 859,152 1010,106 1113,122 1182,125 1202,52 1242,37 1287,86 1345,121 1422,111 1509,114 1603,152 1668,150 1716,138 1803,149 2042,148"/>
   </object>
-  <object id="2" x="589" y="290">
+  <object id="2" x="589" y="488.909">
    <polyline points="0,0 278,44 281,72 -5,39 0,4"/>
   </object>
-  <object id="4" x="995" y="258">
+  <object id="4" x="997" y="446.909">
    <polyline points="0,0 214,6 234,-17 0,-40 3,-2"/>
   </object>
-  <object id="5" x="1341" y="299">
+  <object id="5" x="1341" y="497.909">
    <polyline points="0,0 200,-6 309,27 311,53 16,27 -1,-1"/>
   </object>
-  <object id="6" x="1802" y="337">
+  <object id="6" x="1802" y="531.909">
    <polyline points="0,0 245,40 248,89 71,113 -38,82 -57,30 -4,0"/>
   </object>
  </objectgroup>

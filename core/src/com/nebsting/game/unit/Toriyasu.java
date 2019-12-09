@@ -107,4 +107,8 @@ public class Toriyasu extends Player {
         return new Animation<TextureRegion>(0.075f,frames);
     }
 
+    public void dispose() {
+        walkSheet.dispose();
+        standSheet.dispose();
+    }
 }
