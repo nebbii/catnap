@@ -29,8 +29,8 @@ public class Level implements Screen {
         float h = Gdx.graphics.getHeight();
 
         toriyasu = new Toriyasu();
-        toriyasu.x = 300;
-        toriyasu.y = 200;
+        toriyasu.x = playerX;
+        toriyasu.y = playerY;
 
         tiledMap = new TmxMapLoader().load("level/" + map + ".tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
