@@ -25,6 +25,8 @@ public class Level implements Screen {
 
     Toriyasu toriyasu;
 
+    Polyline[] objLayer;
+
     TiledMap map;
     TiledMapRenderer mapRenderer;
     MapLayer mapCollision;
@@ -48,14 +50,14 @@ public class Level implements Screen {
         mapCollision = map.getLayers().get(mapCollisionLayer);
         mapCollisionObjects = mapCollision.getObjects();
 
-        Gdx.app.log("Obj", mapCollisionObjects.toString());
-
-        Gdx.app.log("Obj", "Makin objects");
+        Polyline[] objLayer = new Polyline[255];
         for(int i=0; i<mapCollisionObjects.getCount(); i++) {
             if(mapCollisionObjects.get(i) instanceof PolylineMapObject) {
-                PolylineMapObject test = (PolylineMapObject) mapCollisionObjects.get(i);
-                Polyline polytest = test.getPolyline();
-                Gdx.app.log("Map Loop", polytest.toString());
+                PolylineMapObject obj = (PolylineMapObject) mapCollisionObjects.get(i);
+                Polyline polytest = obj.getPolyline();
+
+                objLayer[i] = polytest;
+                Gdx.app.log("Obj", "Added polyline!");
             }
         }
 
