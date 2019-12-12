@@ -5,17 +5,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Polyline;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.Arrays;
 
 public class Level implements Screen {
 
@@ -53,14 +52,18 @@ public class Level implements Screen {
 
         Gdx.app.log("Obj", "Makin objects");
         for(int i=0; i<mapCollisionObjects.getCount(); i++) {
-            Gdx.app.log("Map Loop", mapCollisionObjects.get(i).toString());
+            if(mapCollisionObjects.get(i) instanceof PolylineMapObject) {
+                PolylineMapObject test = (PolylineMapObject) mapCollisionObjects.get(i);
+                Polyline polytest = test.getPolyline();
+                Gdx.app.log("Map Loop", polytest.toString());
+            }
         }
 
-        for (RectangleMapObject rectangleObject : mapCollisionObjects.getByType(RectangleMapObject.class)) {
-            Rectangle i = rectangleObject.getRectangle();
-            Gdx.app.log("Obj", i.toString());
-            Gdx.app.log("Obj", "Bing");
-        }
+        //for (RectangleMapObject rectangleObject : mapCollisionObjects.getByType(RectangleMapObject.class)) {
+        //    Rectangle i = rectangleObject.getRectangle();
+        //    Gdx.app.log("Obj", i.toString());
+        //    Gdx.app.log("Obj", "Bing");
+        //}
 
         // Camera
         camera = new OrthographicCamera();
