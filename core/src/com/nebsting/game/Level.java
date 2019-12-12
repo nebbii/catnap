@@ -58,6 +58,9 @@ public class Level implements Screen {
 
                 objLayer[i] = polytest;
                 Gdx.app.log("Obj", "Added polyline!");
+                for(float j : objLayer[i].getVertices()) { 
+                    Gdx.app.log("Obj", Float.toString(j));
+                }
             }
         }
 
