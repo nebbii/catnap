@@ -49,6 +49,18 @@ public class Level implements Screen {
         mapCollision = map.getLayers().get(mapCollisionLayer);
         mapCollisionObjects = mapCollision.getObjects();
 
+        Gdx.app.log("Obj", mapCollisionObjects.toString());
+
+        Gdx.app.log("Obj", "Makin objects");
+        for(int i=0; i<mapCollisionObjects.getCount(); i++) {
+            Gdx.app.log("Map Loop", mapCollisionObjects.get(i).toString());
+        }
+
+        for (RectangleMapObject rectangleObject : mapCollisionObjects.getByType(RectangleMapObject.class)) {
+            Rectangle i = rectangleObject.getRectangle();
+            Gdx.app.log("Obj", i.toString());
+            Gdx.app.log("Obj", "Bing");
+        }
 
         // Camera
         camera = new OrthographicCamera();
@@ -62,11 +74,6 @@ public class Level implements Screen {
 
         mapRenderer.setView(camera);
         mapRenderer.render();
-
-        for (RectangleMapObject rectangleObject : mapCollisionObjects.getByType(RectangleMapObject.class)) {
-            Rectangle i = rectangleObject.getRectangle();
-            Gdx.app.log("Obj", i.toString());
-        }
 
         toriyasu.logic(delta);
 
