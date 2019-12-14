@@ -5,14 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.PolylineMapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Polyline;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
@@ -25,7 +24,7 @@ public class Level implements Screen {
 
     Toriyasu toriyasu;
 
-    Polyline[] objLayer;
+    Polygon[] objLayer;
 
     TiledMap map;
     TiledMapRenderer mapRenderer;
@@ -50,17 +49,19 @@ public class Level implements Screen {
         mapCollision = map.getLayers().get(mapCollisionLayer);
         mapCollisionObjects = mapCollision.getObjects();
 
-        Polyline[] objLayer = new Polyline[255];
+        Polygon[] objLayer = new Polygon[255];
         for(int i=0; i<mapCollisionObjects.getCount(); i++) {
-            if(mapCollisionObjects.get(i) instanceof PolylineMapObject) {
-                PolylineMapObject obj = (PolylineMapObject) mapCollisionObjects.get(i);
-                Polyline polytest = obj.getPolyline();
+            if(mapCollisionObjects.get(i) instanceof PolygonMapObject) {
+                PolygonMapObject obj = (PolygonMapObject) mapCollisionObjects.get(i);
+                Polygon polytest = obj.getPolygon();
 
                 objLayer[i] = polytest;
-                Gdx.app.log("Obj", "Added polyline!");
+                Gdx.app.log("Obj", "Added polygon!");
                 for(float j : objLayer[i].getVertices()) { 
                     Gdx.app.log("Obj", Float.toString(j));
                 }
+            } else {
+                Gdx.app.log("Obj", "the fuck is this");
             }
         }
 

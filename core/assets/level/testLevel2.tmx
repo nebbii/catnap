@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="115" height="16" tilewidth="50" tileheight="50" nextobjectid="11">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="115" height="16" tilewidth="50" tileheight="50" nextobjectid="19">
  <tileset firstgid="1" source="tilesets/test2tiled.tsx"/>
  <layer name="Tile Layer 1" width="115" height="16" offsetx="40" offsety="-88">
   <data encoding="base64" compression="zlib">
@@ -7,21 +7,20 @@
   </data>
  </layer>
  <objectgroup name="Object Layer 1" offsetx="40" offsety="-89.3333">
-  <object id="1" x="7" y="634">
-   <polyline points="0,0 44,-14 94,9 133,75 253,73 307,52 369,77 412,122 468,133 566,95 621,104 764,154 859,152 1010,106 1113,122 1182,125 1202,52 1242,37 1287,86 1345,121 1422,111 1509,114 1603,152 1668,150 1716,138 1803,149 2042,148"/>
+  <object id="14" x="6.66667" y="644">
+   <polygon points="0,0 52,-14.6667 90.6667,2.66667 162.667,66.6667 273.333,52 342.667,38.6667 446.667,117.333 573.333,81.3333 788,145.333 858.667,141.333 933.333,105.333 1017.33,97.3333 1074.67,93.3333 1137.33,110.667 1178.67,105.333 1196,34.6667 1237.33,18.6667 1273.33,52 1336,101.333 1402.67,100 1512,94.6667 1590.67,137.333 1724,129.333 1804,134.667 2000,118.667 2044,130.667 2046.67,182.667 -30.6667,176 -1.33333,-1.33333"/>
   </object>
-  <object id="2" x="589" y="488.909">
-   <polyline points="0,0 278,44 281,72 -5,39 0,4"/>
+  <object id="15" x="596" y="488">
+   <polygon points="0,0 262.667,37.3333 274.667,52 268,65.3333 -4,36 -17.3333,8"/>
   </object>
-  <object id="4" x="997" y="446.909">
-   <polyline points="0,0 214,6 234,-17 0,-40 3,-2"/>
+  <object id="16" x="1001.33" y="409.333">
+   <polygon points="0,0 214.667,18.6667 212,42.6667 105.333,48 0,38.6667"/>
   </object>
-  <object id="5" x="1341" y="497.909">
-   <polyline points="0,0 200,-6 309,27 311,53 16,27 -1,-1"/>
+  <object id="17" x="1342.67" y="490.667">
+   <polygon points="0,0 201.333,-1.33333 300,28 305.333,49.3333 13.3333,25.3333"/>
   </object>
-  <object id="6" x="1802" y="531.909">
-   <polyline points="0,0 245,40 248,89 71,113 -38,82 -57,30 -4,0"/>
+  <object id="18" x="1769.33" y="550.667">
+   <polygon points="0,0 61.3333,-17.3333 278.667,25.3333 277.333,66.6667 66.6667,77.3333 -10.6667,36 -18.6667,8"/>
   </object>
-  <object id="10" x="400" y="350" width="200" height="50"/>
  </objectgroup>
 </map>
