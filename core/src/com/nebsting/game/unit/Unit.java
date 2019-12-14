@@ -34,16 +34,11 @@ public class Unit extends Rectangle {
     // Gets run every frame
     public void logic(float delta) {
         this.gravity(delta);
-        
-        // wrap around LAL
-        //if(getX() < -100) setX(750); 
-        //if(getX() > 750) setX(-100); 
     }
     
     // Returns next position forced by gravity
     public void gravity(float delta) {
         if(getY() < 1) setY(0); 
-
 
         // Countdown jump frames
         if(jumpFrames > 0) jumpFrames -= 1; 
@@ -53,7 +48,6 @@ public class Unit extends Rectangle {
             if(getVspeed() < 20) {
                 increaseVspeed(1);
             }
-
             decreaseY((this.getWeight() * getVspeed()) * delta);
         } 
         else {
