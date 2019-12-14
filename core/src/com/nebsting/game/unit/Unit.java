@@ -22,11 +22,13 @@ public class Unit extends Rectangle {
     }
 
     public boolean onFloor() {
+        boolean onFloor = false;
+
         if(this.getY() < 1) {
-            return true;
-        } else {
-            return false;
+            onFloor = true;
         }
+
+        return onFloor;
     }
 
     // Gets run every frame
