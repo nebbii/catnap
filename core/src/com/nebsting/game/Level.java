@@ -64,12 +64,6 @@ public class Level implements Screen {
             }
         }
 
-        //for (RectangleMapObject rectangleObject : mapCollisionObjects.getByType(RectangleMapObject.class)) {
-        //    Rectangle i = rectangleObject.getRectangle();
-        //    Gdx.app.log("Obj", i.toString());
-        //    Gdx.app.log("Obj", "Bing");
-        //}
-
         // Camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
