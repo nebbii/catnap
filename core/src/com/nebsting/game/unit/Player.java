@@ -16,12 +16,12 @@ public class Player extends Unit {
 
     public void jump(float delta, boolean justPressed) {
         // Start jump timer if just pressed
-        if(justPressed && this.onFloor()) {
+        if(justPressed && this.getOnFloor()) {
             this.jumpFrames += 40;
             if(y==0) this.increaseY(1);
         }
 
-        if(!this.onFloor()) {
+        if(!this.getOnFloor()) {
             if(this.getJumpFrames() > 30) {
                 this.decreaseVspeed(100 * delta);
             } 

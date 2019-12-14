@@ -78,7 +78,7 @@ public class Level implements Screen {
         mapRenderer.setView(camera);
         mapRenderer.render();
 
-        toriyasu.logic(delta);
+        toriyasu.logic(delta, objLayer);
 
         camera.position.set(toriyasu.x + (toriyasu.getWidth() / 2), 350, 0);
         camera.update();

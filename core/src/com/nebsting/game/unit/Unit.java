@@ -12,6 +12,7 @@ public class Unit extends Rectangle {
     float vspeed;
     float weight;
     int jumpFrames;
+    boolean onFloor; // Checks floor on getter
 
     char lastDirection; // l & r
 
@@ -21,14 +22,13 @@ public class Unit extends Rectangle {
         this.lastDirection = 'r';
     }
 
-    public boolean onFloor() {
-        boolean onFloor = false;
-
+    public void checkFloor() {
         if(this.getY() < 1) {
-            onFloor = true;
+            setOnFloor(true);
         }
-
-        return onFloor;
+        else {
+            setOnFloor(false);
+        }
     }
 
     // Gets run every frame
@@ -44,7 +44,7 @@ public class Unit extends Rectangle {
         if(jumpFrames > 0) jumpFrames -= 1; 
 
         // Increase falling speed
-        if(!onFloor()) {
+        if(!getOnFloor()) {
             if(getVspeed() < 20) {
                 increaseVspeed(1);
             }
@@ -54,6 +54,15 @@ public class Unit extends Rectangle {
             setVspeed(0);
             setJumpFrames(0);
         }
+    }
+
+    public boolean getOnFloor() {
+        this.checkFloor();
+        return onFloor;
+    }
+
+    public void setOnFloor(boolean onFloor) {
+        this.onFloor = onFloor;
     }
 
     protected void increaseX(float x) {
@@ -127,6 +136,4 @@ public class Unit extends Rectangle {
     public void setJumpFrames(int jumpFrames) {
         this.jumpFrames = jumpFrames;
     }
-
 }
-
