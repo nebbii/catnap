@@ -3,6 +3,7 @@ package com.nebsting.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -29,23 +30,28 @@ public class Unit extends Rectangle {
             this.height, 0, this.height });
     }
 
-    public void checkFloor() {
+    public void checkFloor(Polygon[] map) {
+        boolean bool = false;
+
         if(this.getY() < 1) {
-            setOnFloor(true);
+            bool = true;
         }
-        else {
-            setOnFloor(false);
+
+        for(int i = 0; i<map.length; i++) {
+            if(Intersector.overlapConvexPolygons(this.hitbox, map[i])) {
+                Gdx.app.log("Obj", "We Overlapping!!! (Hitbox: " + Integer.toString(i) + ")");
+                bool = true;
+            }
         }
+
+        setOnFloor(bool);
     }
 
     // Gets run every frame
     public void logic(float delta, Polygon[] map) {
         this.hitbox.setPosition(this.x, this.y);
-        Gdx.app.log("Hitbox X", Float.toString(this.hitbox.getX()));
-        Gdx.app.log("Hitbox Y", Float.toString(this.hitbox.getY()));
 
-
-        this.checkFloor();
+        this.checkFloor(map);
         this.gravity(delta);
     }
     

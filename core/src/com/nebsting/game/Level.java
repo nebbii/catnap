@@ -14,6 +14,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.lang.reflect.Array;
+
 
 public class Level implements Screen {
 
@@ -49,7 +51,8 @@ public class Level implements Screen {
         mapCollision = map.getLayers().get(mapCollisionLayer);
         mapCollisionObjects = mapCollision.getObjects();
 
-        Polygon[] objLayer = new Polygon[255];
+        objLayer = new Polygon[mapCollisionObjects.getCount()];
+
         for(int i=0; i<mapCollisionObjects.getCount(); i++) {
             if(mapCollisionObjects.get(i) instanceof PolygonMapObject) {
                 PolygonMapObject obj = (PolygonMapObject) mapCollisionObjects.get(i);
