@@ -34,6 +34,7 @@ public class Unit extends Rectangle {
 
     // Gets run every frame
     public void logic(float delta, Polygon[] map) {
+        this.checkFloor();
         this.gravity(delta);
     }
     
@@ -58,7 +59,6 @@ public class Unit extends Rectangle {
     }
 
     public boolean getOnFloor() {
-        this.checkFloor();
         return onFloor;
     }
 

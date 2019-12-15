@@ -56,12 +56,6 @@ public class Level implements Screen {
                 Polygon polytest = obj.getPolygon();
 
                 objLayer[i] = polytest;
-                Gdx.app.log("Obj", "Added polygon!");
-                for(float j : objLayer[i].getVertices()) { 
-                    Gdx.app.log("Obj", Float.toString(j));
-                }
-            } else {
-                Gdx.app.log("Obj", "the fuck is this");
             }
         }
 

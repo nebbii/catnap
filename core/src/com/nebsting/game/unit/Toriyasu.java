@@ -40,7 +40,6 @@ public class Toriyasu extends Player {
 
     public void logic(float delta, Polygon[] map) {
         super.logic(delta, map);
-
         this.controller.checkPresses(delta);
 
         animationTimer += delta;
