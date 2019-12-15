@@ -3,6 +3,7 @@ package com.nebsting.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Unit extends Rectangle {
@@ -32,7 +33,7 @@ public class Unit extends Rectangle {
     }
 
     // Gets run every frame
-    public void logic(float delta) {
+    public void logic(float delta, Polygon[] map) {
         this.gravity(delta);
     }
     

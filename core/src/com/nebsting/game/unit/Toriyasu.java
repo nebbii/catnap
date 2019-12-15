@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Polygon;
 
 
 public class Toriyasu extends Player {
@@ -37,8 +38,8 @@ public class Toriyasu extends Player {
         walkAnimation = initWalkAnimation();
     }
 
-    public void logic(float delta) {
-        super.logic(delta);
+    public void logic(float delta, Polygon[] map) {
+        super.logic(delta, map);
 
         this.controller.checkPresses(delta);
 
