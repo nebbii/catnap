@@ -77,7 +77,7 @@ public class Level implements Screen {
 
         toriyasu.logic(delta, objLayer);
 
-        camera.position.set(toriyasu.x + (toriyasu.getWidth() / 2), 350, 0);
+        camera.position.set(toriyasu.x + (toriyasu.getWidth() / 2), 450, 0);
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);
