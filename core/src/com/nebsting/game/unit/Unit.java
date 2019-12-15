@@ -15,12 +15,18 @@ public class Unit extends Rectangle {
     int jumpFrames;
     boolean onFloor; // Checks floor on getter
 
+    Polygon hitbox;
+
     char lastDirection; // l & r
 
     TextureRegion sprite; 
 
     public Unit() {
         this.lastDirection = 'r';
+
+        // Hitbox
+        this.hitbox = new Polygon(new float[] { 0, 0, this.width, 0, this.width,
+            this.height, 0, this.height });
     }
 
     public void checkFloor() {
@@ -34,6 +40,11 @@ public class Unit extends Rectangle {
 
     // Gets run every frame
     public void logic(float delta, Polygon[] map) {
+        this.hitbox.setPosition(this.x, this.y);
+        Gdx.app.log("Hitbox X", Float.toString(this.hitbox.getX()));
+        Gdx.app.log("Hitbox Y", Float.toString(this.hitbox.getY()));
+
+
         this.checkFloor();
         this.gravity(delta);
     }
