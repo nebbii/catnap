@@ -41,6 +41,11 @@ public class Unit extends Rectangle {
             if(Intersector.overlapConvexPolygons(this.hitbox, map[i])) {
                 Gdx.app.log("Obj", "We Overlapping!!! (Hitbox: " + Integer.toString(i) + ")");
                 bool = true;
+            } else {
+                //Gdx.app.log("Player X", Float.toString(this.getX()));
+                //Gdx.app.log("Player Y", Float.toString(this.getY()));
+                //Gdx.app.log("Hitbox X", Float.toString(this.hitbox.getX()));
+                //Gdx.app.log("Hitbox Y", Float.toString(this.hitbox.getY()));
             }
         }
 
