@@ -14,7 +14,9 @@ public class Unit extends Rectangle {
     float vspeed;
     float weight;
     int jumpFrames;
+
     boolean onFloor; // Checks floor on getter
+    int airFrames;
 
     Polygon hitbox;
 
@@ -24,6 +26,7 @@ public class Unit extends Rectangle {
 
     public Unit() {
         this.lastDirection = 'r';
+        this.airFrames = 0;
 
         // Hitbox
         this.hitbox = new Polygon(new float[] { 0, 0, this.width, 0, this.width,
@@ -64,15 +67,20 @@ public class Unit extends Rectangle {
 
         // Increase falling speed
         if(!getOnFloor()) {
-            if(getVspeed() < 20) {
-                increaseVspeed(1);
+            if(getAirFrames() > 3) {
+                if(getVspeed() < 20) {
+                    increaseVspeed(1);
+                }
+                decreaseY((this.getWeight() * getVspeed()) * delta);
             }
-            decreaseY((this.getWeight() * getVspeed()) * delta);
+            increaseAirframes(1);
         } 
         else {
             setVspeed(0);
             setJumpFrames(0);
+            setAirFrames(0);
         }
+        Gdx.app.log("Airframe count:", Integer.toString(getAirFrames()));
     }
 
     public boolean getOnFloor() {
@@ -89,6 +97,14 @@ public class Unit extends Rectangle {
 
     protected void decreaseX(float x) {
         this.x -= x;
+    }
+
+    protected void increaseAirframes(float a) {
+        this.airFrames += a;
+    }
+
+    protected void decreaseAirFrames(float a) {
+        this.airFrames -= a;
     }
 
     protected void increaseY(float y) {
@@ -153,5 +169,13 @@ public class Unit extends Rectangle {
 
     public void setJumpFrames(int jumpFrames) {
         this.jumpFrames = jumpFrames;
+    }
+
+    public void setAirFrames(int airFrames) {
+        this.airFrames = airFrames;
+    }
+
+    public int getAirFrames() {
+        return airFrames;
     }
 }
