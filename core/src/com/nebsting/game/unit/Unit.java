@@ -56,7 +56,10 @@ public class Unit extends Rectangle {
                         snap = this.y + (float) j;
                     }
                 }
-                //Gdx.app.log("snapped to:", Float.toString(snap));
+                if(this.controller != 0) {
+                    Gdx.app.log("Controllers!", "");
+                }
+                Gdx.app.log("snapped to:", Float.toString(snap));
                 this.y = snap;
             }
         }
