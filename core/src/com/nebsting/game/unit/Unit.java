@@ -33,6 +33,7 @@ public class Unit extends Rectangle {
             this.height, 0, this.height });
     }
 
+    // Check for floor collision, push em up!
     public void checkFloor(Polygon[] map) {
         boolean bool = false;
 
@@ -41,9 +42,22 @@ public class Unit extends Rectangle {
         }
 
         for(int i = 0; i<map.length; i++) {
+            // check for floor
             if(map[i].contains(this.x, this.y-this.height)) {
                 bool = true;
-                this.y++;
+
+                // check for ankle snap
+                float snap = this.y;
+                for(int j = 0; j < ( this.height / 2 ); j++) {
+                    // raise the bar until half player height
+                    float checkBar = this.y + (float) j - (this.height);
+
+                    if(map[i].contains(this.x, checkBar)) {
+                        snap = this.y + (float) j;
+                    }
+                }
+                //Gdx.app.log("snapped to:", Float.toString(snap));
+                this.y = snap;
             }
         }
 
@@ -74,13 +88,13 @@ public class Unit extends Rectangle {
                 decreaseY((this.getWeight() * getVspeed()) * delta);
             }
             increaseAirframes(1);
+            //Gdx.app.log("Airframe count:", Integer.toString(getAirFrames()));
         } 
         else {
             setVspeed(0);
             setJumpFrames(0);
             setAirFrames(0);
         }
-        Gdx.app.log("Airframe count:", Integer.toString(getAirFrames()));
     }
 
     public boolean getOnFloor() {

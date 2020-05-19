@@ -20,6 +20,7 @@ public class Player extends Unit {
             this.setOnFloor(false);
             this.jumpFrames += 40;
             if(y==0) this.increaseY(2);
+            Gdx.app.log("Successfully jumped!", "");
         }
 
         if(!this.getOnFloor()) {
