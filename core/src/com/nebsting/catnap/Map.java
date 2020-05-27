@@ -31,39 +31,7 @@ public class Map {
 
         // Get collision objects
         polygonObjects = loadPolygonLayer(polyLayer);
-        rectangleObjects = new Rectangle[recLayer.getCount()];
-
-        for(int i=0; i<rectangleObjects.length; i++) {
-            if(recLayer.get(i) instanceof RectangleMapObject) {
-                RectangleMapObject cast = (RectangleMapObject) recLayer.get(i);
-                Rectangle result = cast.getRectangle();
-
-                rectangleObjects[i] = result;
-                Gdx.app.log("ObjLayers", result.toString());
-            }
-        }
-    }
-
-    // Returns polygons from a Tiled object layer
-    public Polygon[] loadPolygonLayer(MapObjects layer) {
-        Polygon[] result = new Polygon[layer.getCount()];
-
-        for(int i=0; i<result.length; i++) {
-            if(layer.get(i) instanceof PolygonMapObject) {
-                PolygonMapObject cast = (PolygonMapObject) layer.get(i);
-                Polygon objects = cast.getPolygon();
-
-                result[i] = objects;
-                //Gdx.app.log("ObjLayers", objects.toString());
-            }
-        }
-
-        return result;
-    }
-
-    // Returns rectangles from a Tiled object layer
-    public void loadRectangleLayer() {
-        // ...
+        rectangleObjects = loadRectangleLayer(recLayer);
     }
 
     public boolean checkRectangleCollision(Player player) {
@@ -98,6 +66,40 @@ public class Map {
 
         }
         return landed;
+    }
+
+    // Returns polygons from a Tiled object layer
+    public Polygon[] loadPolygonLayer(MapObjects layer) {
+        Polygon[] result = new Polygon[layer.getCount()];
+
+        for(int i=0; i<result.length; i++) {
+            if(layer.get(i) instanceof PolygonMapObject) {
+                PolygonMapObject cast = (PolygonMapObject) layer.get(i);
+                Polygon objects = cast.getPolygon();
+
+                result[i] = objects;
+                //Gdx.app.log("ObjLayers", objects.toString());
+            }
+        }
+
+        return result;
+    }
+
+    // Returns rectangles from a Tiled object layer
+    public Rectangle[] loadRectangleLayer(MapObjects layer) {
+        Rectangle[] result = new Rectangle[layer.getCount()];
+
+        for(int i=0; i<result.length; i++) {
+            if(layer.get(i) instanceof RectangleMapObject) {
+                RectangleMapObject cast = (RectangleMapObject) layer.get(i);
+                Rectangle objects = cast.getRectangle();
+
+                result[i] = objects;
+                //Gdx.app.log("ObjLayers", objects.toString());
+            }
+        }
+
+        return result;
     }
 }
 
