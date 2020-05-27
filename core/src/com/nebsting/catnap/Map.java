@@ -25,13 +25,9 @@ public class Map {
         file = new TmxMapLoader().load("level/testlevel.tmx");
         renderer = new OrthogonalTiledMapRenderer(file);
 
-        // Map stuff
-        MapObjects polyLayer = file.getLayers().get(1).getObjects();
-        MapObjects recLayer = file.getLayers().get(2).getObjects();
-
-        // Get collision objects
-        polygonObjects = loadPolygonLayer(polyLayer);
-        rectangleObjects = loadRectangleLayer(recLayer);
+        // Get collision objs from layers
+        polygonObjects   = loadPolygonLayer(file.getLayers().get(1).getObjects());
+        rectangleObjects = loadRectangleLayer(file.getLayers().get(2).getObjects());
     }
 
     public boolean checkRectangleCollision(Player player) {
