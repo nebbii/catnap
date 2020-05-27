@@ -30,18 +30,8 @@ public class Map {
         MapObjects recLayer = file.getLayers().get(2).getObjects();
 
         // Get collision objects
-        polygonObjects = new Polygon[polyLayer.getCount()];
+        polygonObjects = loadPolygonLayer(polyLayer);
         rectangleObjects = new Rectangle[recLayer.getCount()];
-
-        for(int i=0; i<polygonObjects.length; i++) {
-            if(polyLayer.get(i) instanceof PolygonMapObject) {
-                PolygonMapObject cast = (PolygonMapObject) polyLayer.get(i);
-                Polygon result = cast.getPolygon();
-
-                polygonObjects[i] = result;
-                Gdx.app.log("ObjLayers", result.toString());
-            }
-        }
 
         for(int i=0; i<rectangleObjects.length; i++) {
             if(recLayer.get(i) instanceof RectangleMapObject) {
@@ -54,10 +44,24 @@ public class Map {
         }
     }
 
-    public void loadPolygonLayer() {
-        // ...
+    // Returns polygons from a Tiled object layer
+    public Polygon[] loadPolygonLayer(MapObjects layer) {
+        Polygon[] result = new Polygon[layer.getCount()];
+
+        for(int i=0; i<result.length; i++) {
+            if(layer.get(i) instanceof PolygonMapObject) {
+                PolygonMapObject cast = (PolygonMapObject) layer.get(i);
+                Polygon objects = cast.getPolygon();
+
+                result[i] = objects;
+                //Gdx.app.log("ObjLayers", objects.toString());
+            }
+        }
+
+        return result;
     }
 
+    // Returns rectangles from a Tiled object layer
     public void loadRectangleLayer() {
         // ...
     }
