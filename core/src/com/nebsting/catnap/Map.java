@@ -15,7 +15,6 @@ import com.badlogic.gdx.math.Rectangle;
 public class Map {
 
     TiledMap file;
-    MapLayer[] layers;
 
     Polygon[] polygonObjects;
     Rectangle[] rectangleObjects;
@@ -24,16 +23,11 @@ public class Map {
 
     public Map() {
         file = new TmxMapLoader().load("level/testlevel.tmx");
+        renderer = new OrthogonalTiledMapRenderer(file);
 
         // Map stuff
-        layers = new MapLayer[2];
-        layers[0] = file.getLayers().get(1);
-        layers[1] = file.getLayers().get(2);
-
-        MapObjects polyLayer = layers[0].getObjects();
-        MapObjects recLayer = layers[1].getObjects();
-
-        renderer = new OrthogonalTiledMapRenderer(file);
+        MapObjects polyLayer = file.getLayers().get(1).getObjects();
+        MapObjects recLayer = file.getLayers().get(2).getObjects();
 
         // Get collision objects
         polygonObjects = new Polygon[polyLayer.getCount()];
