@@ -22,13 +22,8 @@ public class Catnap extends Game {
     OrthographicCamera camera;
 	SpriteBatch batch;
 
-    TiledMap map;
-    MapLayer[] layers;
+    Map map;
 
-    Polygon[] polygonObjects;
-    Rectangle[] rectangleObjects;
-
-    MapRenderer mapRenderer;
     Player player;
 	
 	@Override
@@ -38,39 +33,7 @@ public class Catnap extends Game {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
-        map = new TmxMapLoader().load("level/testlevel.tmx");
-
-        // Map stuff
-        layers = new MapLayer[2];
-        layers[0] = map.getLayers().get(1);
-        layers[1] = map.getLayers().get(2);
-        MapObjects polyLayer = layers[0].getObjects();
-        MapObjects recLayer = layers[1].getObjects();
-
-        mapRenderer = new OrthogonalTiledMapRenderer(map);
-
-        // Get collision objects
-        polygonObjects = new Polygon[polyLayer.getCount()];
-        rectangleObjects = new Rectangle[recLayer.getCount()];
-
-        for(int i=0; i<polygonObjects.length; i++) {
-            if(polyLayer.get(i) instanceof PolygonMapObject) {
-                PolygonMapObject cast = (PolygonMapObject) polyLayer.get(i);
-                Polygon result = cast.getPolygon();
-
-                polygonObjects[i] = result;
-                Gdx.app.log("ObjLayers", result.toString());
-            }
-        }
-        for(int i=0; i<rectangleObjects.length; i++) {
-            if(recLayer.get(i) instanceof RectangleMapObject) {
-                RectangleMapObject cast = (RectangleMapObject) recLayer.get(i);
-                Rectangle result = cast.getRectangle();
-
-                rectangleObjects[i] = result;
-                Gdx.app.log("ObjLayers", result.toString());
-            }
-        }
+        map = new Map();
 
         player = new Player();
 	}
@@ -83,10 +46,10 @@ public class Catnap extends Game {
         player.logic();
 
         // collision check for player
-        player.setOnGround(checkRectangleCollision());
+        player.setOnGround(map.checkRectangleCollision(player));
 
-        mapRenderer.setView(camera);
-        mapRenderer.render();
+        map.renderer.setView(camera);
+        map.renderer.render();
 
         batch.setProjectionMatrix(camera.combined);
 		batch.begin();
@@ -101,37 +64,4 @@ public class Catnap extends Game {
 		batch.dispose();
 	}
 
-    public boolean checkRectangleCollision() {
-        boolean landed = false;
-        for(int i = 0; i<rectangleObjects.length; i++) {
-            if(rectangleObjects[i] instanceof Rectangle) {
-                // top
-                if(rectangleObjects[i].contains(player.x, player.y)) {
-                    player.collideTop(player.y);
-                    Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
-                }
-
-                // bottom
-                if(rectangleObjects[i].contains(player.x, player.y-player.height)) {
-                    player.collideBottom(player.y);
-                    landed = true;
-                    Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
-                }
-                
-                // left
-                if(rectangleObjects[i].contains(player.x, player.y)) {
-                    player.collideLeft(player.x);
-                    Gdx.app.log("Collision", "Left: "+Float.toString(player.x));
-                }
-                
-                // right
-                if(rectangleObjects[i].contains(player.x+player.width, player.y)) {
-                    player.collideRight(player.x);
-                    Gdx.app.log("Collision", "Right: "+Float.toString(player.x));
-                }
-            }
-
-        }
-        return landed;
-    }
 }
