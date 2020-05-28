@@ -69,28 +69,45 @@ public class Map {
         float h = player.height;
 
         switch(face) {
-            case 4: // bottom 
-                y -= player.height;
             case 1: // top
+                y += player.height;
                 for(int i=0; i<Math.round(w); i++) {
                     if(solid.contains(x+i, y)) { 
                         Gdx.app.log("CollisionFace", "Vertically on iteration " + Integer.toString(i));
-                        Gdx.app.log("CollisionFace", Integer.toString(Math.round(w)));
-                        collided = true; i=Math.round(w);
-                        //Gdx.app.log("CollisionFace", "Vertically at " + Float.toString(x+i) + ": " + Float.toString(y));
+                        collided = true; 
+                        i=Math.round(w);
                     }
                 }
                 break;
 
             // horizontal
-            case 3: // right 
-                x += player.width;
+            case 4: // bottom 
+                y -= player.height / 2 ;
+                for(int i=0; i<Math.round(w); i++) {
+                    if(solid.contains(x+i, y)) { 
+                        Gdx.app.log("CollisionFace", "Vertically on iteration " + Integer.toString(i));
+                        collided = true; 
+                        i=Math.round(w);
+                    }
+                }
+                break;
             case 2: // left
+                x -= player.width / 2 ;
                 for(int i=0; i<Math.round(h); i++) {
                     if(solid.contains(x, y+i)) {
                         Gdx.app.log("CollisionFace", "Horizontally on iteration " + Integer.toString(i));
-                        collided = true; i=Math.round(h);
-                        //Gdx.app.log("CollisionFace", "Horizontally at " + Float.toString(x) + ": " + Float.toString(y+i));
+                        collided = true; 
+                        i=Math.round(h);
+                    }
+                }
+                break;
+            case 3: // right 
+                x += player.width / 4 + player.width;
+                for(int i=0; i<Math.round(h); i++) {
+                    if(solid.contains(x, y+i)) {
+                        Gdx.app.log("CollisionFace", "Horizontally on iteration " + Integer.toString(i));
+                        collided = true; 
+                        i=Math.round(h);
                     }
                 }
                 break;
