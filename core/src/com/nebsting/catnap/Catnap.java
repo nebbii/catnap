@@ -33,9 +33,8 @@ public class Catnap extends Game {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
-        map = new Map();
-
         player = new Player();
+        map = new Map(player);
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class Map {
 
     MapRenderer renderer;
 
-    public Map() {
+    public Map(Player player) {
         file = new TmxMapLoader().load("level/testlevel.tmx");
         renderer = new OrthogonalTiledMapRenderer(file);
 
@@ -34,32 +34,69 @@ public class Map {
         boolean landed = false;
 
         for(int i = 0; i<rectangleObjects.length; i++) {
+            Rectangle col = rectangleObjects[i];
             // top
-            if(rectangleObjects[i].contains(player.x, player.y)) {
+            if(col.contains(player.x, player.y)) {
                 player.collideTop(player.y);
-                Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
+                //Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
             }
-
             // bottom
-            if(rectangleObjects[i].contains(player.x, player.y-player.height)) {
+            if(col.contains(player.x, player.y-player.height)) {
                 player.collideBottom(player.y);
                 landed = true;
-                Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
+                //Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
             }
-            
             // left
-            if(rectangleObjects[i].contains(player.x, player.y)) {
+            if(col.contains(player.x, player.y)) {
                 player.collideLeft(player.x);
-                Gdx.app.log("Collision", "Left: "+Float.toString(player.x));
+                //Gdx.app.log("Collision", "Left: "+Float.toString(player.x));
             }
-            
             // right
-            if(rectangleObjects[i].contains(player.x+player.width, player.y)) {
+            if(col.contains(player.x+player.width, player.y)) {
                 player.collideRight(player.x);
-                Gdx.app.log("Collision", "Right: "+Float.toString(player.x));
+                //Gdx.app.log("Collision", "Right: "+Float.toString(player.x));
             }
         }
         return landed;
+    }
+
+    public boolean checkCollisionOnSide(Rectangle solid, Rectangle player, int side) {
+        boolean collided = false;
+
+        float x = player.x;
+        float y = player.y;
+        float w = player.width;
+        float h = player.height;
+
+
+        switch(side) {
+            case 4: // bottom 
+                y -= player.height;
+            case 1: // top
+                for(int i=0; i<w; i++) {
+                    if(solid.contains(x+i, y)) { 
+                        collided = true;
+                        Gdx.app.log("CollisionOnSide", "Vertically");
+                    }
+                }
+                break;
+
+            // horizontal
+            case 3: // right 
+                x += player.width;
+            case 2: // left
+                for(int i=0; i<h; i++) {
+                    if(solid.contains(x+i, y)) {
+                        collided = true;
+                        Gdx.app.log("CollisionOnSide", "Horizontally");
+                    }
+                }
+                break;
+
+            default: Gdx.app.log("CollisionOnSide", "Invalid side"); break;
+        }
+
+        return collided;
     }
 
     // Returns polygons from a Tiled object layer
