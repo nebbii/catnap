@@ -36,23 +36,23 @@ public class Map {
         for(int i = 0; i<rectangleObjects.length; i++) {
             Rectangle col = rectangleObjects[i];
             // top
-            if(col.contains(player.x, player.y)) {
+            if(checkCollisionFace(col, player, 1)) {
                 player.collideTop(player.y);
                 //Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
             }
             // bottom
-            if(col.contains(player.x, player.y-player.height)) {
+            if(checkCollisionFace(col, player, 4)) {
                 player.collideBottom(player.y);
                 landed = true;
                 //Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
             }
             // left
-            if(col.contains(player.x, player.y)) {
+            if(checkCollisionFace(col, player, 2)) {
                 player.collideLeft(player.x);
                 //Gdx.app.log("Collision", "Left: "+Float.toString(player.x));
             }
             // right
-            if(col.contains(player.x+player.width, player.y)) {
+            if(checkCollisionFace(col, player, 3)) {
                 player.collideRight(player.x);
                 //Gdx.app.log("Collision", "Right: "+Float.toString(player.x));
             }
@@ -60,7 +60,7 @@ public class Map {
         return landed;
     }
 
-    public boolean checkCollisionOnSide(Rectangle solid, Rectangle player, int side) {
+    public boolean checkCollisionFace(Rectangle solid, Rectangle player, int face) {
         boolean collided = false;
 
         float x = player.x;
@@ -68,15 +68,16 @@ public class Map {
         float w = player.width;
         float h = player.height;
 
-
-        switch(side) {
+        switch(face) {
             case 4: // bottom 
                 y -= player.height;
             case 1: // top
-                for(int i=0; i<w; i++) {
+                for(int i=0; i<Math.round(w); i++) {
                     if(solid.contains(x+i, y)) { 
-                        collided = true;
-                        Gdx.app.log("CollisionOnSide", "Vertically");
+                        Gdx.app.log("CollisionFace", "Vertically on iteration " + Integer.toString(i));
+                        Gdx.app.log("CollisionFace", Integer.toString(Math.round(w)));
+                        collided = true; i=Math.round(w);
+                        //Gdx.app.log("CollisionFace", "Vertically at " + Float.toString(x+i) + ": " + Float.toString(y));
                     }
                 }
                 break;
@@ -85,15 +86,16 @@ public class Map {
             case 3: // right 
                 x += player.width;
             case 2: // left
-                for(int i=0; i<h; i++) {
-                    if(solid.contains(x+i, y)) {
-                        collided = true;
-                        Gdx.app.log("CollisionOnSide", "Horizontally");
+                for(int i=0; i<Math.round(h); i++) {
+                    if(solid.contains(x, y+i)) {
+                        Gdx.app.log("CollisionFace", "Horizontally on iteration " + Integer.toString(i));
+                        collided = true; i=Math.round(h);
+                        //Gdx.app.log("CollisionFace", "Horizontally at " + Float.toString(x) + ": " + Float.toString(y+i));
                     }
                 }
                 break;
 
-            default: Gdx.app.log("CollisionOnSide", "Invalid side"); break;
+            default: Gdx.app.log("CollisionFace", "Invalid face"); break;
         }
 
         return collided;
