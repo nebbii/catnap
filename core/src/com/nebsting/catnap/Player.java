@@ -91,20 +91,28 @@ public class Player extends Rectangle {
         this.y = pos-1;
     }
 
-    public void collideBottom(float pos) {
-        this.onGround = true;
+    public void collideBottom(Rectangle col) {
         this.vy = 0;
-        this.y = pos;
+        for(int i=Math.round(this.width/3); i < Math.round(this.width/3)*2; i++) {
+            while(col.contains(this.x + i, this.y +1 - this.height / 4)) { 
+               this.y++;
+            }
+        }
     }
 
-    public void collideLeft(float pos) {
+    public void collideLeft(Rectangle col) {
         this.vx = 0;
-        this.x = pos+1;
+        // check every pixel for collision
+        while(col.contains(this.x - this.width / 4, this.y + (this.height / 2))) {
+            this.x++;
+        }
     }
 
-    public void collideRight(float pos) {
+    public void collideRight(Rectangle col) {
         this.vx = 0;
-        this.x = pos-1;
+        while(col.contains(this.x + this.width, this.y + (this.height / 2))) {
+            this.x--;
+        }
     }
 
     public void setVx(int vx) {

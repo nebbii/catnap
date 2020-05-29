@@ -40,17 +40,20 @@ public class Map {
                 player.collideTop(player.y);
             }
             // bottom
-            if(col.contains(player.x + (player.width / 2), player.y - player.height / 4)) { 
-                player.collideBottom(player.y);
-                landed = true;
+            for(int j=0; j<player.width; j++) {
+                if(col.contains(player.x + j, player.y - player.height / 4)) { 
+                    landed = true;
+                    player.collideBottom(col);
+                }
             }
+
             // left
-            if(col.contains(player.x - player.width / 2, player.y + (player.height / 2))) {
-                player.collideLeft(player.x);
+            if(col.contains(player.x - player.width / 4, player.y + (player.height / 2))) {
+                player.collideLeft(col);
             }
             // right
             if(col.contains(player.x + player.width, player.y + (player.height / 2))) {
-                player.collideRight(player.x);
+                player.collideRight(col);
             }
         }
         return landed;
