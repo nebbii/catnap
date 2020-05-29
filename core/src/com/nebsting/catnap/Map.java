@@ -36,86 +36,24 @@ public class Map {
         for(int i = 0; i<rectangleObjects.length; i++) {
             Rectangle col = rectangleObjects[i];
             // top
-            if(checkCollisionFace(col, player, 1)) {
+            if(col.contains(player.x + (player.width / 2), player.y + player.height)) { 
                 player.collideTop(player.y);
-                //Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
             }
             // bottom
-            if(checkCollisionFace(col, player, 4)) {
+            if(col.contains(player.x + (player.width / 2), player.y - player.height / 4)) { 
                 player.collideBottom(player.y);
                 landed = true;
-                //Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
             }
             // left
-            if(checkCollisionFace(col, player, 2)) {
+            if(col.contains(player.x - player.width / 2, player.y + (player.height / 2))) {
                 player.collideLeft(player.x);
-                //Gdx.app.log("Collision", "Left: "+Float.toString(player.x));
             }
             // right
-            if(checkCollisionFace(col, player, 3)) {
+            if(col.contains(player.x + player.width, player.y + (player.height / 2))) {
                 player.collideRight(player.x);
-                //Gdx.app.log("Collision", "Right: "+Float.toString(player.x));
             }
         }
         return landed;
-    }
-
-    public boolean checkCollisionFace(Rectangle solid, Rectangle player, int face) {
-        boolean collided = false;
-
-        float x = player.x;
-        float y = player.y;
-        float w = player.width;
-        float h = player.height;
-
-        switch(face) {
-            case 1: // top
-                y += player.height;
-                for(int i=0; i<Math.round(w); i++) {
-                    if(solid.contains(x+i, y)) { 
-                        Gdx.app.log("CollisionFace", "Vertically on iteration " + Integer.toString(i));
-                        collided = true; 
-                        i=Math.round(w);
-                    }
-                }
-                break;
-
-            // horizontal
-            case 4: // bottom 
-                y -= player.height / 2 ;
-                for(int i=0; i<Math.round(w); i++) {
-                    if(solid.contains(x+i, y)) { 
-                        Gdx.app.log("CollisionFace", "Vertically on iteration " + Integer.toString(i));
-                        collided = true; 
-                        i=Math.round(w);
-                    }
-                }
-                break;
-            case 2: // left
-                x -= player.width / 2 ;
-                for(int i=0; i<Math.round(h); i++) {
-                    if(solid.contains(x, y+i)) {
-                        Gdx.app.log("CollisionFace", "Horizontally on iteration " + Integer.toString(i));
-                        collided = true; 
-                        i=Math.round(h);
-                    }
-                }
-                break;
-            case 3: // right 
-                x += player.width / 4 + player.width;
-                for(int i=0; i<Math.round(h); i++) {
-                    if(solid.contains(x, y+i)) {
-                        Gdx.app.log("CollisionFace", "Horizontally on iteration " + Integer.toString(i));
-                        collided = true; 
-                        i=Math.round(h);
-                    }
-                }
-                break;
-
-            default: Gdx.app.log("CollisionFace", "Invalid face"); break;
-        }
-
-        return collided;
     }
 
     // Returns polygons from a Tiled object layer
