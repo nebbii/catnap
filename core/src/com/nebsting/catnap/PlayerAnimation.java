@@ -13,17 +13,52 @@ public class PlayerAnimation {
     Texture walkSheet;
     Animation<TextureRegion> walkAnimation;
 
-    float animationTimer;
+    float timer;
 
-    public PlayerAnimation() {
+    Player player;
+
+    public PlayerAnimation(Player player) {
         standSheet = new Texture(Gdx.files.internal("obj/cfang/standsheet.png"));
         standAnimation = initStandAnimation();
 
         walkSheet = new Texture(Gdx.files.internal("obj/cfang/walksheet.png"));
         walkAnimation = initWalkAnimation();
+
+        timer = 0f;
+
+        this.player = player;
     }
 
-    public void setCurrentSprite(float timer) {
+    public TextureRegion setCurrentSprite() {
+        TextureRegion frame = new TextureRegion();
+
+        // Idle
+        if(player.getVx() == 0) {
+            frame = standAnimation.getKeyFrame(timer, true);
+
+            if( (player.lastDirection != 'l') && frame.isFlipX() ) frame.flip(true,false);
+            if( (player.lastDirection != 'r') && !frame.isFlipX() ) frame.flip(true,false);
+        }
+
+        // Walk left
+        if(player.getVx() < 0) {
+            frame = walkAnimation.getKeyFrame(timer, true);
+
+            // Flip logic
+            if(!frame.isFlipX()) frame.flip(true,false);
+            if(player.lastDirection != 'l') player.lastDirection = 'l';
+        }
+
+        // Walk right
+        if(player.getVx() > 0) {
+            frame = walkAnimation.getKeyFrame(timer, true);
+            
+            // Flip logic
+            if(frame.isFlipX()) frame.flip(true,false);
+            if(player.lastDirection != 'r') player.lastDirection = 'r';
+        }
+
+        return frame;
     }
 
     public Animation<TextureRegion> initStandAnimation() {

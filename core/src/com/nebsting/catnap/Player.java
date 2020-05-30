@@ -3,11 +3,11 @@ package com.nebsting.catnap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Player extends Rectangle {
 
-    public Texture image;
 
     public int vx;
     public int vy;
@@ -19,10 +19,13 @@ public class Player extends Rectangle {
     public int jumpSpeed;
     public int fallSpeed;
 
+    public char lastDirection; // l & r
+    public PlayerAnimation animation;
+    public TextureRegion sprite;
+
     public Player() {
-        image = new Texture(Gdx.files.internal("block.png"));
-        width = 24;
-        height = 24;
+        width = 96;
+        height = 96;
         x = 100;
         y = 184;
         vx = 0;
@@ -33,8 +36,11 @@ public class Player extends Rectangle {
 
         jumpSpeed = 600;
         fallSpeed = 20;
-
         onGround = false;
+
+        lastDirection = 'r';
+
+        animation = new PlayerAnimation(this);
     }
 
     public void logic() {
@@ -42,6 +48,9 @@ public class Player extends Rectangle {
         jumpPlayer();
         gravity();
 
+        this.sprite = animation.setCurrentSprite();
+
+        this.animation.timer += Gdx.graphics.getDeltaTime();
         /*
         Gdx.app.log("On Ground", Boolean.toString(onGround));
         Gdx.app.log("Speed", Float.toString(vy - jumpSpeed) + " of " + Float.toString(jumpSpeed));
