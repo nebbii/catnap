@@ -46,7 +46,7 @@ public class Catnap extends Game {
         player.logic();
 
         // collision check for player
-        player.setOnGround(map.checkRectangleCollision(player));
+        map.checkRectangleCollision();
 
         map.renderer.setView(camera);
         map.renderer.render();

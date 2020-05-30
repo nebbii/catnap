@@ -21,6 +21,8 @@ public class Map {
 
     MapRenderer renderer;
 
+    Player player;
+
     public Map(Player player) {
         file = new TmxMapLoader().load("level/testlevel.tmx");
         renderer = new OrthogonalTiledMapRenderer(file);
@@ -28,10 +30,13 @@ public class Map {
         // Get collision objs from layers
         polygonObjects   = loadPolygonLayer(file.getLayers().get(1).getObjects());
         rectangleObjects = loadRectangleLayer(file.getLayers().get(2).getObjects());
+
+        // attach player
+        this.player = player;
     }
 
-    public boolean checkRectangleCollision(Player player) {
-        boolean landed = false;
+    public void checkRectangleCollision() {
+        this.player.setOnGround(false);
 
         for(int i = 0; i<rectangleObjects.length; i++) {
             Rectangle col = rectangleObjects[i];
@@ -39,17 +44,15 @@ public class Map {
             if(col.contains(player.x + (player.width / 4), player.y + player.height)) { 
                 player.collideTop(player.y);
                 //Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
-
             }
             // bottom
             for(int j=0; j<player.width-1; j++) {
                 if(col.contains(player.x + j, player.y - player.height / 4)) { 
-                    landed = true;
+                    this.player.setOnGround(true);
                     player.collideBottom(col);
                     //Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
                 }
             }
-
             // left
             if(col.contains(player.x - player.width / 4, player.y + (player.height / 2))) {
                 player.collideLeft(col);
@@ -61,7 +64,6 @@ public class Map {
                 //Gdx.app.log("Collision", "Right: "+Float.toString(player.y));
             }
         }
-        return landed;
     }
 
     // Returns polygons from a Tiled object layer
