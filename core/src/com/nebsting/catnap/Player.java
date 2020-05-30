@@ -89,13 +89,9 @@ public class Player extends Rectangle {
     public void collideTop(float pos) {
         this.setVy(0);
         this.y = pos-1;
-        Gdx.app.log("Collide", "Top");
     }
 
     public void collideBottom(Rectangle col) {
-        if(getVy()!=0) {
-            Gdx.app.log("CollideBottom", "BONK");
-        }
         for(int i=Math.round(this.width/4); i < Math.round(this.width/4*3); i++) {
             while(col.contains(this.x + i, this.y +1 - this.height / 4)) { 
                 this.setVy(0);
