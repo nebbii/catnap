@@ -92,6 +92,7 @@ public class Player extends Rectangle {
     }
 
     public void collideBottom(Rectangle col) {
+        this.setOnGround(true);
         for(int i=Math.round(this.width/4); i < Math.round(this.width/4*3); i++) {
             while(col.contains(this.x + i, this.y +1 - this.height / 4)) { 
                 this.setVy(0);

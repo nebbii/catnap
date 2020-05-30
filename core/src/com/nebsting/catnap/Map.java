@@ -48,7 +48,6 @@ public class Map {
             // bottom
             for(int j=0; j<player.width-1; j++) {
                 if(col.contains(player.x + j, player.y - player.height / 4)) { 
-                    this.player.setOnGround(true);
                     player.collideBottom(col);
                     //Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
                 }
