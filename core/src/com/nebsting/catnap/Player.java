@@ -87,21 +87,25 @@ public class Player extends Rectangle {
     }
 
     public void collideTop(float pos) {
-        this.vy = 0;
+        this.setVy(0);
         this.y = pos-1;
+        Gdx.app.log("Collide", "Top");
     }
 
     public void collideBottom(Rectangle col) {
-        this.vy = 0;
-        for(int i=Math.round(this.width/3); i < Math.round(this.width/3)*2; i++) {
+        if(getVy()!=0) {
+            Gdx.app.log("CollideBottom", "BONK");
+        }
+        for(int i=Math.round(this.width/4); i < Math.round(this.width/4*3); i++) {
             while(col.contains(this.x + i, this.y +1 - this.height / 4)) { 
-               this.y++;
+                this.setVy(0);
+                this.y++;
             }
         }
     }
 
     public void collideLeft(Rectangle col) {
-        this.vx = 0;
+        this.setVx(0);
         // check every pixel for collision
         while(col.contains(this.x - this.width / 4, this.y + (this.height / 2))) {
             this.x++;
@@ -109,7 +113,7 @@ public class Player extends Rectangle {
     }
 
     public void collideRight(Rectangle col) {
-        this.vx = 0;
+        this.setVx(0);
         while(col.contains(this.x + this.width, this.y + (this.height / 2))) {
             this.x--;
         }
@@ -128,7 +132,7 @@ public class Player extends Rectangle {
 
         if(vy != 0) {
             this.onGround = false;
-        }
+        }     
     }
 
     public int getVy() {
