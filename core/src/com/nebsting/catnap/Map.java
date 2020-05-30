@@ -42,7 +42,7 @@ public class Map {
             Rectangle col = rectangleObjects[i];
             // top
             if(col.contains(player.x + (player.width / 2), player.y + player.height)) { 
-                player.collideTop(player.y);
+                player.collideTop(col);
                 //Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
             }
             // bottom

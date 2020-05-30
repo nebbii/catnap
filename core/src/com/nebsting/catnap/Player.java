@@ -95,9 +95,11 @@ public class Player extends Rectangle {
         y += vy * Gdx.graphics.getDeltaTime();
     }
 
-    public void collideTop(float pos) {
-        this.setVy(0);
-        this.y = pos-1;
+    public void collideTop(Rectangle col) {
+        while(col.contains(this.x + (this.width / 2), this.y + this.height)) { 
+            this.setVy(0);
+            this.y--;
+        }
     }
 
     public void collideBottom(Rectangle col) {
@@ -111,16 +113,16 @@ public class Player extends Rectangle {
     }
 
     public void collideLeft(Rectangle col) {
-        this.setVx(0);
         // check every pixel for collision
         while(col.contains(this.x - this.width / 8, this.y + (this.height / 3))) {
+            this.setVx(0);
             this.x++;
         }
     }
 
     public void collideRight(Rectangle col) {
-        this.setVx(0);
-        while(col.contains(this.x + this.width, this.y + (this.height / 2))) {
+        while(col.contains(this.x + this.width, this.y + (this.height / 3))) {
+            this.setVx(0);
             this.x--;
         }
     }
