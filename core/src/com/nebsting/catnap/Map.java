@@ -36,24 +36,29 @@ public class Map {
         for(int i = 0; i<rectangleObjects.length; i++) {
             Rectangle col = rectangleObjects[i];
             // top
-            if(col.contains(player.x + (player.width / 2), player.y + player.height)) { 
+            if(col.contains(player.x + (player.width / 4), player.y + player.height)) { 
                 player.collideTop(player.y);
+                Gdx.app.log("Collision", "Top: "+Float.toString(player.y));
+
             }
             // bottom
             for(int j=0; j<player.width; j++) {
                 if(col.contains(player.x + j, player.y - player.height / 4)) { 
                     landed = true;
                     player.collideBottom(col);
+                    Gdx.app.log("Collision", "Bottom: "+Float.toString(player.y));
                 }
             }
 
             // left
             if(col.contains(player.x - player.width / 4, player.y + (player.height / 2))) {
                 player.collideLeft(col);
+                Gdx.app.log("Collision", "Left: "+Float.toString(player.y));
             }
             // right
             if(col.contains(player.x + player.width, player.y + (player.height / 2))) {
                 player.collideRight(col);
+                Gdx.app.log("Collision", "Right: "+Float.toString(player.y));
             }
         }
         return landed;
@@ -69,7 +74,6 @@ public class Map {
                 Polygon objects = cast.getPolygon();
 
                 result[i] = objects;
-                //Gdx.app.log("ObjLayers", objects.toString());
             }
         }
 
