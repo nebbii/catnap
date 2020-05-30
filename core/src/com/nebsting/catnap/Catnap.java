@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapRenderer;
@@ -25,16 +27,20 @@ public class Catnap extends Game {
     Map map;
 
     Player player;
+
+    ShapeRenderer hitboxes;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, 1280, 720);
 
         player = new Player();
         map = new Map(player);
+        
+        hitboxes = new ShapeRenderer();
 	}
 
 	@Override
@@ -53,8 +59,13 @@ public class Catnap extends Game {
 
         batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-        batch.draw(player.sprite, player.x, player.y);
+        batch.draw(player.sprite, player.x-16, player.y);
 		batch.end();
+
+        //hitboxes.setProjectionMatrix(camera.combined);
+        //hitboxes.begin(ShapeType.Line);
+        //hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
+        //hitboxes.end();
 
         camera.update();
 	}

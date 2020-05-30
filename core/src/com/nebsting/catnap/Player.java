@@ -24,8 +24,8 @@ public class Player extends Rectangle {
     public TextureRegion sprite;
 
     public Player() {
-        width = 96;
-        height = 96;
+        width = 60;
+        height = 100;
         x = 100;
         y = 184;
         vx = 0;
@@ -102,8 +102,8 @@ public class Player extends Rectangle {
 
     public void collideBottom(Rectangle col) {
         this.setOnGround(true);
-        for(int i=Math.round(this.width/4); i < Math.round(this.width/4*3); i++) {
-            while(col.contains(this.x + i, this.y +1 - this.height / 4)) { 
+        for(int i=Math.round(this.width/6); i < Math.round(this.width/6*5); i++) {
+            while(col.contains(this.x + i, this.y +1 - this.height / 16)) { 
                 this.setVy(0);
                 this.y++;
             }
@@ -113,7 +113,7 @@ public class Player extends Rectangle {
     public void collideLeft(Rectangle col) {
         this.setVx(0);
         // check every pixel for collision
-        while(col.contains(this.x - this.width / 4, this.y + (this.height / 2))) {
+        while(col.contains(this.x - this.width / 8, this.y + (this.height / 3))) {
             this.x++;
         }
     }
