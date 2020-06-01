@@ -102,7 +102,7 @@ public class Player extends Rectangle {
      */
     public void gravity() {
         if(!onGround) {
-            vy = vy - fallSpeed;
+            vy = Math.max(vy - fallSpeed, (jumpSpeed * -2));;
         }
 
         y += vy * Gdx.graphics.getDeltaTime();
