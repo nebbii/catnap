@@ -121,7 +121,7 @@ public class Player extends Rectangle {
             collideLeft(col);
             collideRight(col);
 
-            // check if player is standing at all
+            // check if player is standing on any rectangle
             if(collideBottom(col)) {
                 land = true;
             }
