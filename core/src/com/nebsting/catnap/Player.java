@@ -167,7 +167,9 @@ public class Player extends Rectangle {
      */
     public void collideLeft(Rectangle col) {
         // check every pixel for collision
-        while(col.contains(this.x - this.width / 8, this.y + (this.height / 3))) {
+        while((col.contains(this.x - this.width / 8, this.y + (this.height / 3)))
+               || (col.contains(this.x - this.width / 8, this.y + (this.height / 3 * 2)))
+        ) {
             this.setVx(0);
             this.x++;
         }
@@ -177,7 +179,9 @@ public class Player extends Rectangle {
      * Sets vx to 0 when the right of rectangle collides
      */
     public void collideRight(Rectangle col) {
-        while(col.contains(this.x + this.width, this.y + (this.height / 3))) {
+        while(col.contains(this.x + this.width, this.y + (this.height / 3))
+              || (col.contains(this.x + this.width, this.y + (this.height / 3 * 2)))
+        ) {
             this.setVx(0);
             this.x--;
         }
