@@ -21,18 +21,13 @@ public class Map {
 
     MapRenderer renderer;
 
-    Player player;
-
-    public Map(Player player) {
+    public Map() {
         file = new TmxMapLoader().load("level/testlevel2.tmx");
         renderer = new OrthogonalTiledMapRenderer(file);
 
         // Get collision objs from layers
         polygonObjects   = loadPolygonLayer(file.getLayers().get(1).getObjects());
         rectangleObjects = loadRectangleLayer(file.getLayers().get(2).getObjects());
-
-        // attach player
-        this.player = player;
     }
 
     // Returns polygons from a Tiled object layer
