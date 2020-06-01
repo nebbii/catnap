@@ -94,12 +94,24 @@ public class Player extends Rectangle {
         y += vy * Gdx.graphics.getDeltaTime();
     }
 
-    public boolean collideRectangleAllSides(Rectangle col) {
-        collideTop(col);
-        collideLeft(col);
-        collideRight(col);
+    // Check collision with all objects of rectangle layer
+    public void collideRectangleLayer(Rectangle[] objects) {
+        boolean land = false;
 
-        return collideBottom(col);
+        for(int i = 0; i<objects.length; i++) {
+            Rectangle col = objects[i];
+
+            collideTop(col);
+            collideLeft(col);
+            collideRight(col);
+
+            // check if player is standing at all
+            if(collideBottom(col)) {
+                land = true;
+            }
+        }
+
+        setOnGround(land);
     }
 
     public void collideTop(Rectangle col) {

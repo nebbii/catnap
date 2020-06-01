@@ -35,17 +35,6 @@ public class Map {
         this.player = player;
     }
 
-    public void checkRectangleCollision() {
-        boolean landed = false;
-
-        for(int i = 0; i<rectangleObjects.length; i++) {
-            Rectangle col = rectangleObjects[i];
-            if(player.collideRectangleAllSides(col)) landed = true;
-        }
-
-        player.setOnGround(landed);
-    }
-
     // Returns polygons from a Tiled object layer
     public Polygon[] loadPolygonLayer(MapObjects layer) {
         Polygon[] result = new Polygon[layer.getCount()];
