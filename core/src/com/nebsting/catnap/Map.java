@@ -12,6 +12,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Handles TiledMap files and layering
+ */
 public class Map {
 
     TiledMap file;
@@ -30,7 +33,9 @@ public class Map {
         rectangleObjects = loadRectangleLayer(file.getLayers().get(2).getObjects());
     }
 
-    // Returns polygons from a Tiled object layer
+    /**
+     * Returns polygons from a Tiled object layer
+     */
     public Polygon[] loadPolygonLayer(MapObjects layer) {
         Polygon[] result = new Polygon[layer.getCount()];
 
@@ -46,7 +51,9 @@ public class Map {
         return result;
     }
 
-    // Returns rectangles from a Tiled object layer
+    /**
+     * Returns rectangles from a Tiled object layer
+     */
     public Rectangle[] loadRectangleLayer(MapObjects layer) {
         Rectangle[] result = new Rectangle[layer.getCount()];
 

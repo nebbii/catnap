@@ -38,14 +38,13 @@ public class Catnap extends Game {
         camera.setToOrtho(false, 1280, 960);
 
         player = new Player();
-        map = new Map(player);
+        map = new Map();
         
         hitboxes = new ShapeRenderer();
 	}
 
 	@Override
 	public void render () {
-        //Gdx.app.log("render", "................");
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -58,13 +57,8 @@ public class Catnap extends Game {
 
         batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-        batch.draw(player.sprite, player.x-16, player.y);
+        batch.draw(player.sprite, player.x-player.spriteOffset, player.y);
 		batch.end();
-
-        //hitboxes.setProjectionMatrix(camera.combined);
-        //hitboxes.begin(ShapeType.Line);
-        //hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
-        //hitboxes.end();
 
         camera.position.set(player.x + (player.getWidth() / 2), 450, 0);
         camera.update();

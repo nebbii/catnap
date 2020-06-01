@@ -6,6 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Handles player logic
+ *
+ * Animation functions can be found in the PlayerAnimation class
+ */
 public class Player extends Rectangle {
 
     public int vx;
@@ -22,9 +27,13 @@ public class Player extends Rectangle {
     public PlayerAnimation animation;
     public TextureRegion sprite;
 
+    public float spriteOffset;
+
     public Player() {
         width = 60;
         height = 100;
+        spriteOffset = 16;
+
         x = 100;
         y = 184;
         vx = 0;
@@ -42,6 +51,9 @@ public class Player extends Rectangle {
         animation = new PlayerAnimation(this);
     }
 
+    /**
+     * This function gets called in render()
+     */
     public void logic() {
         movePlayer();
         jumpPlayer();
@@ -50,15 +62,11 @@ public class Player extends Rectangle {
         this.sprite = animation.setCurrentSprite();
 
         this.animation.timer += Gdx.graphics.getDeltaTime();
-        /*
-        Gdx.app.log("On Ground", Boolean.toString(onGround));
-        Gdx.app.log("Speed", Float.toString(vy - jumpSpeed) + " of " + Float.toString(jumpSpeed));
-        Gdx.app.log("X: ", Float.toString(x));
-        Gdx.app.log("Y: ", Float.toString(y));
-        Gdx.app.log("VY: ", Float.toString(vy));
-        */
     }
 
+    /**
+     * Moves player according to walk acceleration and speed
+     */
     public void movePlayer() {
         // left
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -79,6 +87,9 @@ public class Player extends Rectangle {
         x += vx * Gdx.graphics.getDeltaTime();
     }
 
+    /**
+     * Jumps player by bumping vy
+     */
     public void jumpPlayer() {
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && onGround) {
             vy = jumpSpeed;
@@ -86,6 +97,9 @@ public class Player extends Rectangle {
         }
     }
 
+    /**
+     * Moves player according to vy, increases velocity if not on ground
+     */
     public void gravity() {
         if(!onGround) {
             vy = vy - fallSpeed;
@@ -94,7 +108,9 @@ public class Player extends Rectangle {
         y += vy * Gdx.graphics.getDeltaTime();
     }
 
-    // Check collision with all objects of rectangle layer
+    /**
+     * Check collision with all objects of rectangle layer
+     */    
     public void collideRectangleLayer(Rectangle[] objects) {
         boolean land = false;
 
@@ -114,6 +130,9 @@ public class Player extends Rectangle {
         setOnGround(land);
     }
 
+    /**
+     * Sets vspeed to 0 when the top-center of rectangle collides
+     */
     public void collideTop(Rectangle col) {
         while(col.contains(this.x + (this.width / 2), this.y + this.height)) { 
             this.setVy(0);
@@ -121,6 +140,9 @@ public class Player extends Rectangle {
         }
     }
 
+    /** 
+     * Returns whether the player should be considered landed or not
+     */
     public boolean collideBottom(Rectangle col) {
         boolean landed = false;
 
@@ -140,6 +162,9 @@ public class Player extends Rectangle {
         return landed;
     }
 
+    /**
+     * Sets vx to 0 when the left of rectangle collides
+     */
     public void collideLeft(Rectangle col) {
         // check every pixel for collision
         while(col.contains(this.x - this.width / 8, this.y + (this.height / 3))) {
@@ -148,11 +173,25 @@ public class Player extends Rectangle {
         }
     }
 
+    /**
+     * Sets vx to 0 when the right of rectangle collides
+     */
     public void collideRight(Rectangle col) {
         while(col.contains(this.x + this.width, this.y + (this.height / 3))) {
             this.setVx(0);
             this.x--;
         }
+    }
+
+    /**
+     * Shows position data in log
+     */
+    public void dumpPosData() {
+        Gdx.app.log("On Ground", Boolean.toString(onGround));
+        Gdx.app.log("Speed", Float.toString(vy - jumpSpeed) + " of " + Float.toString(jumpSpeed));
+        Gdx.app.log("X: ", Float.toString(x));
+        Gdx.app.log("Y: ", Float.toString(y));
+        Gdx.app.log("VY: ", Float.toString(vy));
     }
 
     public void setVx(int vx) {
