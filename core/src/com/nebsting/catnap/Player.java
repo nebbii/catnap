@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Player extends Rectangle {
 
-
     public int vx;
     public int vy;
     public boolean onGround;
@@ -95,6 +94,14 @@ public class Player extends Rectangle {
         y += vy * Gdx.graphics.getDeltaTime();
     }
 
+    public boolean collideRectangleAllSides(Rectangle col) {
+        collideTop(col);
+        collideLeft(col);
+        collideRight(col);
+
+        return collideBottom(col);
+    }
+
     public void collideTop(Rectangle col) {
         while(col.contains(this.x + (this.width / 2), this.y + this.height)) { 
             this.setVy(0);
@@ -102,14 +109,23 @@ public class Player extends Rectangle {
         }
     }
 
-    public void collideBottom(Rectangle col) {
-        this.setOnGround(true);
+    public boolean collideBottom(Rectangle col) {
+        boolean landed = false;
+
         for(int i=Math.round(this.width/6); i < Math.round(this.width/6*5); i++) {
+            // check for landing
+            if(col.contains(this.x + i, this.y - this.height / 16)) { 
+                landed = true;
+            }
+
+            // push out of floor
             while(col.contains(this.x + i, this.y +1 - this.height / 16)) { 
                 this.setVy(0);
                 this.y++;
             }
         }
+
+        return landed;
     }
 
     public void collideLeft(Rectangle col) {
