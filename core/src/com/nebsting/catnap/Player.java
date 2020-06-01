@@ -29,6 +29,10 @@ public class Player extends Rectangle {
 
     public float spriteOffset;
 
+    public float cameraPos;
+    public float cameraSpeed;
+    public float maxCameraPos;
+
     public Player() {
         width = 60;
         height = 100;
@@ -48,6 +52,10 @@ public class Player extends Rectangle {
 
         lastDirection = 'r';
 
+        cameraPos = 50;
+        cameraSpeed = 5;
+        maxCameraPos = 50;
+
         animation = new PlayerAnimation(this);
     }
 
@@ -57,6 +65,9 @@ public class Player extends Rectangle {
     public void logic() {
         movePlayer();
         jumpPlayer();
+
+        swayCamera();
+
         gravity();
 
         this.sprite = animation.setCurrentSprite();
@@ -95,6 +106,11 @@ public class Player extends Rectangle {
             vy = jumpSpeed;
             this.setOnGround(false);
         }
+    }
+
+    public void swayCamera() {
+        if(lastDirection == 'l') cameraPos = Math.max(cameraPos - cameraSpeed, maxCameraPos * -1); 
+        if(lastDirection == 'r') cameraPos = Math.min(cameraPos + cameraSpeed, maxCameraPos); 
     }
 
     /**

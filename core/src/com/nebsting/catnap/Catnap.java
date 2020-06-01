@@ -60,7 +60,7 @@ public class Catnap extends Game {
         batch.draw(player.sprite, player.x-player.spriteOffset, player.y);
 		batch.end();
 
-        camera.position.set(player.x + (player.getWidth() / 2), 450, 0);
+        camera.position.set(player.x + (player.getWidth() / 2) + player.cameraPos, 450, 0);
         camera.update();
 	}
 	
