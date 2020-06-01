@@ -38,7 +38,7 @@ public class Catnap extends Game {
         camera.setToOrtho(false, 1280, 960);
 
         player = new Player();
-        map = new Map();
+        map = new Map("level/testlevel2.tmx");
         
         hitboxes = new ShapeRenderer();
 	}
