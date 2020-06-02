@@ -29,8 +29,8 @@ public class Map {
         renderer = new OrthogonalTiledMapRenderer(file);
 
         // Get collision objs from layers
-        polygonObjects   = loadPolygonLayer(file.getLayers().get(1).getObjects());
-        rectangleObjects = loadRectangleLayer(file.getLayers().get(2).getObjects());
+        polygonObjects   = loadPolygonLayer(file.getLayers().get(2).getObjects());
+        rectangleObjects = loadRectangleLayer(file.getLayers().get(1).getObjects());
     }
 
     /**

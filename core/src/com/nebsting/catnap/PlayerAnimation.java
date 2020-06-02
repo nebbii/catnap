@@ -18,10 +18,10 @@ public class PlayerAnimation {
     Player player;
 
     public PlayerAnimation(Player player) {
-        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand200px.png"));
+        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand256px.png"));
         standAnimation = initStandAnimation();
 
-        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walk200px.png"));
+        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walk256px.png"));
         walkAnimation = initWalkAnimation();
 
         timer = 0f;
@@ -38,6 +38,8 @@ public class PlayerAnimation {
 
             if( (player.lastDirection != 'l') && frame.isFlipX() ) frame.flip(true,false);
             if( (player.lastDirection != 'r') && !frame.isFlipX() ) frame.flip(true,false);
+
+            player.spriteOffset = 18;
         }
 
         // Walk left
@@ -47,6 +49,8 @@ public class PlayerAnimation {
             // Flip logic
             if(!frame.isFlipX()) frame.flip(true,false);
             if(player.lastDirection != 'l') player.lastDirection = 'l';
+
+            player.spriteOffset = 32;
         }
 
         // Walk right
@@ -56,6 +60,8 @@ public class PlayerAnimation {
             // Flip logic
             if(frame.isFlipX()) frame.flip(true,false);
             if(player.lastDirection != 'r') player.lastDirection = 'r';
+
+            player.spriteOffset = 32;
         }
 
         return frame;

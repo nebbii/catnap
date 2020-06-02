@@ -30,9 +30,9 @@ public class Player extends Rectangle {
     public float spriteOffset;
 
     public Player() {
-        width = 60;
-        height = 100;
-        spriteOffset = 16;
+        width = 154;
+        height = 256;
+        spriteOffset = 0;
 
         x = 100;
         y = 184;
@@ -42,8 +42,8 @@ public class Player extends Rectangle {
         walkAcceleration = 20;
         walkMaxSpeed = 400;
 
-        jumpSpeed = 600;
-        fallSpeed = 20;
+        jumpSpeed = 1200;
+        fallSpeed = 40;
         onGround = false;
 
         lastDirection = 'r';
