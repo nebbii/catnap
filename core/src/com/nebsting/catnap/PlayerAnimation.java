@@ -18,10 +18,10 @@ public class PlayerAnimation {
     Player player;
 
     public PlayerAnimation(Player player) {
-        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/toristand200px.png"));
+        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand200px.png"));
         standAnimation = initStandAnimation();
 
-        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walksheet.png"));
+        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walk200px.png"));
         walkAnimation = initWalkAnimation();
 
         timer = 0f;

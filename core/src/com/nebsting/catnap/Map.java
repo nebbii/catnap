@@ -25,7 +25,7 @@ public class Map {
     MapRenderer renderer;
 
     public Map(String path) {
-        file = new TmxMapLoader().load(path);
+        file = new TmxMapLoader().load(path + "level.tmx");
         renderer = new OrthogonalTiledMapRenderer(file);
 
         // Get collision objs from layers
