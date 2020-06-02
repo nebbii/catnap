@@ -18,7 +18,7 @@ public class PlayerAnimation {
     Player player;
 
     public PlayerAnimation(Player player) {
-        standSheet = new Texture(Gdx.files.internal("obj/cfang/standsheet.png"));
+        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/toristand200px.png"));
         standAnimation = initStandAnimation();
 
         walkSheet = new Texture(Gdx.files.internal("obj/cfang/walksheet.png"));
@@ -63,11 +63,11 @@ public class PlayerAnimation {
 
     public Animation<TextureRegion> initStandAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(standSheet, 
-                this.standSheet.getWidth() / 5, this.standSheet.getHeight() / 1);
+                this.standSheet.getWidth() / 4, this.standSheet.getHeight() / 1);
 
         // Do frames
         TextureRegion[] standFrames = new TextureRegion[] {
-            tmp[0][1], tmp[0][1], tmp[0][1], tmp[0][1], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][4], tmp[0][3], tmp[0][2], tmp[0][1]
+            tmp[0][0], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][2], tmp[0][1] 
         };
 
         return new Animation<TextureRegion>(0.150f,standFrames);
