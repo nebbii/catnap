@@ -18,10 +18,10 @@ public class PlayerAnimation {
     Player player;
 
     public PlayerAnimation(Player player) {
-        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand256px.png"));
+        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand192.png"));
         standAnimation = initStandAnimation();
 
-        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walk256px.png"));
+        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walk192px.png"));
         walkAnimation = initWalkAnimation();
 
         timer = 0f;
@@ -39,7 +39,7 @@ public class PlayerAnimation {
             if( (player.lastDirection != 'l') && frame.isFlipX() ) frame.flip(true,false);
             if( (player.lastDirection != 'r') && !frame.isFlipX() ) frame.flip(true,false);
 
-            player.spriteOffset = 18;
+            player.spriteOffset = 4;
         }
 
         // Walk left
@@ -69,11 +69,11 @@ public class PlayerAnimation {
 
     public Animation<TextureRegion> initStandAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(standSheet, 
-                this.standSheet.getWidth() / 4, this.standSheet.getHeight() / 1);
+                this.standSheet.getWidth() / 2, this.standSheet.getHeight() / 2);
 
         // Do frames
         TextureRegion[] standFrames = new TextureRegion[] {
-            tmp[0][0], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][2], tmp[0][1] 
+            tmp[0][0], tmp[0][1], tmp[1][0], tmp[1][1], tmp[1][0], tmp[0][1] 
         };
 
         return new Animation<TextureRegion>(0.150f,standFrames);

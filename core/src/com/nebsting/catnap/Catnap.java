@@ -35,7 +35,7 @@ public class Catnap extends Game {
 		batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1280, 960);
+        camera.setToOrtho(false, 1280, 720);
 
         player = new Player();
         map = new Map("level/testlevel/");
@@ -65,7 +65,7 @@ public class Catnap extends Game {
         hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
         hitboxes.end();
 
-        camera.position.set(player.x + (player.getWidth() / 2), 450, 0);
+        camera.position.set(player.x + (player.getWidth() / 2), 350, 0);
         camera.update();
 	}
 	

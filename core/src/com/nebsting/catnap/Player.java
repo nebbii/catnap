@@ -30,8 +30,8 @@ public class Player extends Rectangle {
     public float spriteOffset;
 
     public Player() {
-        width = 154;
-        height = 256;
+        width = 100;
+        height = 192;
         spriteOffset = 0;
 
         x = 100;
