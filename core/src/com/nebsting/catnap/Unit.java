@@ -1,6 +1,7 @@
 package com.nebsting.catnap;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -37,11 +38,11 @@ public class Unit extends Rectangle {
     /**
      * Check collision with all objects of rectangle layer
      */    
-    public void collideRectangleLayer(Rectangle[] objects) {
+    public void collideRectangleLayer(Rectangle[] rectangles, Polygon[] polygons) {
         boolean land = false;
 
-        for(int i = 0; i<objects.length; i++) {
-            Rectangle col = objects[i];
+        for(int i = 0; i<rectangles.length; i++) {
+            Rectangle col = rectangles[i];
 
             collideTop(col);
             collideLeft(col);
@@ -49,6 +50,19 @@ public class Unit extends Rectangle {
 
             // check if player is standing on any rectangle
             if(collideBottom(col)) {
+                land = true;
+            }
+        }
+
+        for(int i = 0; i<polygons.length; i++) {
+            Polygon col = polygons[i];
+
+            collideTopPolygon(col);
+            collideLeftPolygon(col);
+            collideRightPolygon(col);
+
+            // check if player is standing on any polygon
+            if(collideBottomPolygon(col)) {
                 land = true;
             }
         }
@@ -105,6 +119,63 @@ public class Unit extends Rectangle {
      * Sets vx to 0 when the right of rectangle collides
      */
     public void collideRight(Rectangle col) {
+        while(col.contains(this.x + this.width + this.width / 8, this.y + (this.height / 3))
+          || (col.contains(this.x + this.width + this.width / 8, this.y + (this.height / 3 * 2)) )
+        ) {
+            this.setVx(0);
+            this.x--;
+        }
+    }
+
+    /**
+     * Sets vspeed to 0 when the top-center of polygon collides
+     */
+    public void collideTopPolygon(Polygon col) {
+        while(col.contains(this.x + (this.width / 2), this.y + this.height)) { 
+            this.setVy(0);
+            this.y--;
+        }
+    }
+
+    /** 
+     * Returns whether the player should be considered landed or not
+     */
+    public boolean collideBottomPolygon(Polygon col) {
+        boolean landed = false;
+
+        for(int i=Math.round(this.width/6); i < Math.round(this.width/6*5); i++) {
+            // check for landing
+            if(col.contains(this.x + i, this.y - this.height / 16)) { 
+                landed = true;
+            }
+
+            // push out of floor
+            while(col.contains(this.x + i, this.y +1 - this.height / 24)) { 
+                this.setVy(0);
+                this.y++;
+            }
+        }
+
+        return landed;
+    }
+
+    /**
+     * Sets vx to 0 when the left of Polygon collides
+     */
+    public void collideLeftPolygon(Polygon col) {
+        // check every pixel for collision
+        while((col.contains(this.x - this.width / 8, this.y + (this.height / 3)))
+           || (col.contains(this.x - this.width / 8, this.y + (this.height / 3 * 2)) )
+        ) {
+            this.setVx(0);
+            this.x++;
+        }
+    }
+
+    /**
+     * Sets vx to 0 when the right of Polygon collides
+     */
+    public void collideRightPolygon(Polygon col) {
         while(col.contains(this.x + this.width + this.width / 8, this.y + (this.height / 3))
           || (col.contains(this.x + this.width + this.width / 8, this.y + (this.height / 3 * 2)) )
         ) {
