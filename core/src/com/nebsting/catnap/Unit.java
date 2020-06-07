@@ -22,12 +22,12 @@ public class Unit extends Rectangle {
     public int walkAcceleration;
     public int walkMaxSpeed;
 
-    public CollisionRectangle collisionRec;
-    public CollisionPolygon collisionPoly;
+    public CollisionRectangle colRec;
+    public CollisionPolygon colPoly;
 
     public Unit() {
-        collisionRec = new CollisionRectangle(this);
-        collisionPoly = new CollisionPolygon(this);
+        colRec = new CollisionRectangle(this);
+        colPoly = new CollisionPolygon(this);
     }
 
     /**
@@ -44,28 +44,30 @@ public class Unit extends Rectangle {
     public void collideLayers(Rectangle[] rectangles, Polygon[] polygons) {
         boolean land = false;
 
+        // Collide with rectangles
         for(int i = 0; i<rectangles.length; i++) {
             Rectangle col = rectangles[i];
 
-            collisionRec.top(col);
-            collisionRec.left(col);
-            collisionRec.right(col);
+            colRec.top(col);
+            colRec.left(col);
+            colRec.right(col);
 
             // check if unit is standing on any rectangle
-            if(collisionRec.bottom(col)) {
+            if(colRec.bottom(col)) {
                 land = true;
             }
         }
 
+        // Collide with polygons
         for(int i = 0; i<polygons.length; i++) {
             Polygon col = polygons[i];
 
-            collisionPoly.top(col);
-            collisionPoly.left(col);
-            collisionPoly.right(col);
+            colPoly.top(col);
+            colPoly.left(col);
+            colPoly.right(col);
 
             // check if unit is standing on any rectangle
-            if(collisionPoly.bottom(col)) {
+            if(colPoly.bottom(col)) {
                 land = true;
             }
         }

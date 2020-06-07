@@ -54,6 +54,8 @@ public class Player extends Unit {
         this.sprite = animation.setCurrentSprite();
 
         this.animation.timer += Gdx.graphics.getDeltaTime();
+
+        this.dumpPosData();
     }
 
     /**
