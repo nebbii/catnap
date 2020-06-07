@@ -28,7 +28,7 @@ public class Unit extends Rectangle {
      */
     public void gravity() {
         if(!onGround) {
-            vy = Math.max(vy - fallSpeed, (jumpSpeed * -2));;
+            vy = Math.max(vy - fallSpeed, (jumpSpeed * -2));
         }
 
         y += vy * Gdx.graphics.getDeltaTime();
@@ -55,7 +55,6 @@ public class Unit extends Rectangle {
 
         setOnGround(land);
     }
-
 
     /**
      * Sets vspeed to 0 when the top-center of rectangle collides
