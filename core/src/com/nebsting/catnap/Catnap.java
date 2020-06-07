@@ -37,7 +37,7 @@ public class Catnap extends Game {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);
 
-        player = new Player();
+        player = new Player(100,70);
         map = new Map("level/testlevel/");
         
         hitboxes = new ShapeRenderer();

@@ -30,14 +30,14 @@ public class Player extends Rectangle {
     public float spriteOffsetX;
     public float spriteOffsetY;
 
-    public Player() {
+    public Player(float x, float y) {
         width = 100;
         height = 192;
         spriteOffsetX = 0;
         spriteOffsetY = 0;
 
-        x = 100;
-        y = 184;
+        this.x = x;
+        this.y = y;
         vx = 0;
         vy = 0;
 
@@ -57,9 +57,10 @@ public class Player extends Rectangle {
      * This function gets called in render()
      */
     public void logic() {
+        gravity();
+
         movePlayer();
         jumpPlayer();
-        gravity();
 
         this.sprite = animation.setCurrentSprite();
 
