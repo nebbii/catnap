@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
  *
  * Animation functions can be found in the PlayerAnimation class
  */
-public class Player extends Rectangle {
+public class Player extends Unit {
 
     public int vx;
     public int vy;
