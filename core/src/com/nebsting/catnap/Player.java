@@ -39,8 +39,8 @@ public class Player extends Rectangle {
         vx = 0;
         vy = 0;
 
-        walkAcceleration = 20;
-        walkMaxSpeed = 400;
+        walkAcceleration = 30;
+        walkMaxSpeed = 600;
 
         jumpSpeed = 1200;
         fallSpeed = 40;
