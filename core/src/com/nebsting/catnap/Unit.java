@@ -8,6 +8,17 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Unit extends Rectangle {
 
+    public int vx;
+    public int vy;
+    public boolean onGround;
+
+    public int jumpSpeed;
+    public int fallSpeed;
+
+    public char lastDirection; // l & r
+
+    public int walkAcceleration;
+    public int walkMaxSpeed;
 
     public Unit() {
     }

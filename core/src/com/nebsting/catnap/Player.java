@@ -9,21 +9,10 @@ import com.badlogic.gdx.math.Rectangle;
 /**
  * Handles player logic
  *
+ * General actor logic can be found in the Unit class
  * Animation functions can be found in the PlayerAnimation class
  */
 public class Player extends Unit {
-
-    public int vx;
-    public int vy;
-    public boolean onGround;
-
-    public int walkAcceleration;
-    public int walkMaxSpeed;
-
-    public int jumpSpeed;
-    public int fallSpeed;
-
-    public char lastDirection; // l & r
     public PlayerAnimation animation;
     public TextureRegion sprite;
 
