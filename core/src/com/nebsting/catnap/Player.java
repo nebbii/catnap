@@ -19,6 +19,8 @@ public class Player extends Unit {
     public float spriteOffsetX;
     public float spriteOffsetY;
 
+    public int lastOnGround;
+
     public Player(float x, float y) {
         width = 100;
         height = 192;
@@ -35,7 +37,9 @@ public class Player extends Unit {
 
         jumpSpeed = 1400;
         fallSpeed = 60;
+
         onGround = false;
+        lastOnGround = 0;
 
         lastDirection = 'r';
 
@@ -51,11 +55,12 @@ public class Player extends Unit {
         move();
         jump();
 
+        if(getOnGround()) lastOnGround = 5;
+        if(lastOnGround>0) lastOnGround--;
+
         this.sprite = animation.setCurrentSprite();
 
         this.animation.timer += Gdx.graphics.getDeltaTime();
-
-        this.dumpPosData();
     }
 
     /**
@@ -85,8 +90,9 @@ public class Player extends Unit {
      * Jumps player by bumping vy
      */
     public void jump() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && onGround) {
-            vy = jumpSpeed;
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && lastOnGround > 0) {
+            vy = jumpSpeed; lastOnGround = 0;
+
             this.setOnGround(false);
         }
     }
