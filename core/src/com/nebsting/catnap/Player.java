@@ -228,4 +228,28 @@ public class Player extends Rectangle {
         return onGround;
     }
 
+    public void setSpriteOffsetX(float spriteOffsetX) {
+        this.spriteOffsetX = spriteOffsetX;
+    }
+
+    public float getSpriteOffsetX() {
+        return spriteOffsetX;
+    }
+
+    public void setSpriteOffsetY(float spriteOffsetY) {
+        this.spriteOffsetY = spriteOffsetY;
+    }
+
+    public float getSpriteOffsetY() {
+        return spriteOffsetY;
+    }
+
+    public float getSpritePosX() {
+        return x + spriteOffsetX;
+    }
+
+    public float getSpritePosY() {
+        return y + spriteOffsetY;
+    }
+
 }
