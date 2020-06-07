@@ -21,12 +21,12 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Catnap extends Game {
-    OrthographicCamera camera;
 	SpriteBatch batch;
 
     Map map;
 
     Player player;
+    Camera camera;
 
     ShapeRenderer hitboxes;
 	
@@ -34,10 +34,9 @@ public class Catnap extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1280, 720);
-
         player = new Player(100,70);
+        camera = new Camera(player);
+
         map = new Map("level/testlevel/");
         
         hitboxes = new ShapeRenderer();
@@ -51,6 +50,7 @@ public class Catnap extends Game {
         player.collideRectangleLayer(map.rectangleObjects);
 
         player.logic();
+        camera.logic();
 
         map.renderer.setView(camera);
         map.renderer.render();
@@ -65,8 +65,6 @@ public class Catnap extends Game {
         hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
         hitboxes.end();
 
-        camera.position.set(player.x + (player.getWidth() / 2), 350, 0);
-        camera.update();
 	}
 	
 	@Override
