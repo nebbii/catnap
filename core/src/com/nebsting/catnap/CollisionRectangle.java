@@ -10,14 +10,14 @@ public class CollisionRectangle {
         this.unit = unit;
     }
 
-    public void collideTop(Rectangle col) {
+    public void top(Rectangle col) {
         while(col.contains(unit.x + (unit.width / 2), unit.y + unit.height)) { 
             unit.setVy(0);
             unit.y--;
         }
     }
 
-    public boolean collideBottom(Rectangle col) {
+    public boolean bottom(Rectangle col) {
         boolean landed = false;
 
         for(int i=Math.round(unit.width/6); i < Math.round(unit.width/6*5); i++) {
@@ -36,7 +36,7 @@ public class CollisionRectangle {
         return landed;
     }
 
-    public void collideLeft(Rectangle col) {
+    public void left(Rectangle col) {
         // check every pixel for collision
         while((col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3)))
            || (col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3 * 2)) )
@@ -46,7 +46,7 @@ public class CollisionRectangle {
         }
     }
 
-    public void collideRight(Rectangle col) {
+    public void right(Rectangle col) {
         while(col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3))
           || (col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3 * 2)) )
         ) {

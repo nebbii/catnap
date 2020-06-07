@@ -47,12 +47,12 @@ public class Unit extends Rectangle {
         for(int i = 0; i<rectangles.length; i++) {
             Rectangle col = rectangles[i];
 
-            collisionRec.collideTop(col);
-            collisionRec.collideLeft(col);
-            collisionRec.collideRight(col);
+            collisionRec.top(col);
+            collisionRec.left(col);
+            collisionRec.right(col);
 
             // check if unit is standing on any rectangle
-            if(collisionRec.collideBottom(col)) {
+            if(collisionRec.bottom(col)) {
                 land = true;
             }
         }
@@ -60,12 +60,12 @@ public class Unit extends Rectangle {
         for(int i = 0; i<polygons.length; i++) {
             Polygon col = polygons[i];
 
-            collisionPoly.collideTop(col);
-            collisionPoly.collideLeft(col);
-            collisionPoly.collideRight(col);
+            collisionPoly.top(col);
+            collisionPoly.left(col);
+            collisionPoly.right(col);
 
             // check if unit is standing on any rectangle
-            if(collisionPoly.collideBottom(col)) {
+            if(collisionPoly.bottom(col)) {
                 land = true;
             }
         }

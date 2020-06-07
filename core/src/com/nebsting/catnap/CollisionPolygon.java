@@ -13,7 +13,7 @@ public class CollisionPolygon {
     /**
      * Sets vspeed to 0 when the top-center of polygon collides
      */
-    public void collideTop(Polygon col) {
+    public void top(Polygon col) {
         while(col.contains(unit.x + (unit.width / 2), unit.y + unit.height)) { 
             unit.setVy(0);
             unit.y--;
@@ -23,7 +23,7 @@ public class CollisionPolygon {
     /** 
      * Returns whether the unit should be considered landed or not
      */
-    public boolean collideBottom(Polygon col) {
+    public boolean bottom(Polygon col) {
         boolean landed = false;
 
         for(int i=Math.round(unit.width/6); i < Math.round(unit.width/6*5); i++) {
@@ -45,7 +45,7 @@ public class CollisionPolygon {
     /**
      * Sets vx to 0 when the left of Polygon collides
      */
-    public void collideLeft(Polygon col) {
+    public void left(Polygon col) {
         // check every pixel for collision
         while((col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3)))
            || (col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3 * 2)) )
@@ -58,7 +58,7 @@ public class CollisionPolygon {
     /**
      * Sets vx to 0 when the right of Polygon collides
      */
-    public void collideRight(Polygon col) {
+    public void right(Polygon col) {
         while(col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3))
           || (col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3 * 2)) )
         ) {
