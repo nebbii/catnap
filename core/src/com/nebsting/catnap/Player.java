@@ -27,20 +27,22 @@ public class Player extends Rectangle {
     public PlayerAnimation animation;
     public TextureRegion sprite;
 
-    public float spriteOffset;
+    public float spriteOffsetX;
+    public float spriteOffsetY;
 
     public Player() {
         width = 100;
         height = 192;
-        spriteOffset = 0;
+        spriteOffsetX = 0;
+        spriteOffsetY = 0;
 
         x = 100;
         y = 184;
         vx = 0;
         vy = 0;
 
-        walkAcceleration = 30;
-        walkMaxSpeed = 600;
+        walkAcceleration = 25;
+        walkMaxSpeed = 500;
 
         jumpSpeed = 1200;
         fallSpeed = 40;
@@ -153,7 +155,7 @@ public class Player extends Rectangle {
             }
 
             // push out of floor
-            while(col.contains(this.x + i, this.y +1 - this.height / 16)) { 
+            while(col.contains(this.x + i, this.y +1 - this.height / 24)) { 
                 this.setVy(0);
                 this.y++;
             }

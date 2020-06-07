@@ -39,7 +39,8 @@ public class PlayerAnimation {
             if( (player.lastDirection != 'l') && frame.isFlipX() ) frame.flip(true,false);
             if( (player.lastDirection != 'r') && !frame.isFlipX() ) frame.flip(true,false);
 
-            player.spriteOffset = 16;
+            player.spriteOffsetX = -16;
+            player.spriteOffsetY = -16;
         }
 
         // Walk left
@@ -50,7 +51,8 @@ public class PlayerAnimation {
             if(!frame.isFlipX()) frame.flip(true,false);
             if(player.lastDirection != 'l') player.lastDirection = 'l';
 
-            player.spriteOffset = 32;
+            player.spriteOffsetX = -32;
+            player.spriteOffsetY = 0;
         }
 
         // Walk right
@@ -61,7 +63,8 @@ public class PlayerAnimation {
             if(frame.isFlipX()) frame.flip(true,false);
             if(player.lastDirection != 'r') player.lastDirection = 'r';
 
-            player.spriteOffset = 32;
+            player.spriteOffsetX = -32;
+            player.spriteOffsetY = 0;
         }
 
         return frame;
