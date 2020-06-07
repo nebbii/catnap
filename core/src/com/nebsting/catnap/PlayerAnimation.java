@@ -18,10 +18,10 @@ public class PlayerAnimation {
     Player player;
 
     public PlayerAnimation(Player player) {
-        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand192.png"));
+        standSheet = new Texture(Gdx.files.internal("obj/toriyasu/stand.png"));
         standAnimation = initStandAnimation();
 
-        walkSheet = new Texture(Gdx.files.internal("obj/cfang/walk192px.png"));
+        walkSheet = new Texture(Gdx.files.internal("obj/toriyasu/run.png"));
         walkAnimation = initWalkAnimation();
 
         timer = 0f;
@@ -51,8 +51,8 @@ public class PlayerAnimation {
             if(!frame.isFlipX()) frame.flip(true,false);
             if(player.lastDirection != 'l') player.lastDirection = 'l';
 
-            player.spriteOffsetX = -32;
-            player.spriteOffsetY = 0;
+            player.spriteOffsetX = -16;
+            player.spriteOffsetY = -16;
         }
 
         // Walk right
@@ -63,8 +63,8 @@ public class PlayerAnimation {
             if(frame.isFlipX()) frame.flip(true,false);
             if(player.lastDirection != 'r') player.lastDirection = 'r';
 
-            player.spriteOffsetX = -32;
-            player.spriteOffsetY = 0;
+            player.spriteOffsetX = -16;
+            player.spriteOffsetY = -16;
         }
 
         return frame;
@@ -72,10 +72,10 @@ public class PlayerAnimation {
 
     public Animation<TextureRegion> initStandAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(standSheet, 
-                this.standSheet.getWidth() / 4, this.standSheet.getHeight() / 1);
+                this.standSheet.getWidth() / 4, this.standSheet.getHeight());
 
         // Do frames
-        TextureRegion[] standFrames = new TextureRegion[] {
+        TextureRegion[] frames = new TextureRegion[] {
             tmp[0][0],
             tmp[0][1],
             tmp[0][2],
@@ -84,22 +84,25 @@ public class PlayerAnimation {
             tmp[0][1] 
         };
 
-        return new Animation<TextureRegion>(0.150f,standFrames);
+        return new Animation<TextureRegion>(0.150f, frames);
     }
 
     public Animation<TextureRegion> initWalkAnimation() {
         TextureRegion[][] tmp = TextureRegion.split(walkSheet, 
-                this.walkSheet.getWidth() / 4, this.walkSheet.getHeight() / 2);
+                this.walkSheet.getWidth() / 6, this.walkSheet.getHeight());
 
         // Do frames
-        TextureRegion[] frames = new TextureRegion[8];
-        int index = 0;
-        for(int i=0;i<2;i++) {
-            for(int j=0;j<4;j++) {
-                frames[index++] = tmp[i][j];
-            }
-        }
-        return new Animation<TextureRegion>(0.075f,frames);
+        TextureRegion[] frames = new TextureRegion[] {
+            tmp[0][0],
+            tmp[0][1],
+            tmp[0][2],
+            tmp[0][3],
+            tmp[0][4],
+            tmp[0][5],
+            tmp[0][3],
+            tmp[0][2]
+        };
+        return new Animation<TextureRegion>(0.066f,frames);
     }
 
 }
