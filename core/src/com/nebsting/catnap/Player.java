@@ -41,11 +41,11 @@ public class Player extends Rectangle {
         vx = 0;
         vy = 0;
 
-        walkAcceleration = 25;
-        walkMaxSpeed = 500;
+        walkAcceleration = 30;
+        walkMaxSpeed = 600;
 
-        jumpSpeed = 1200;
-        fallSpeed = 40;
+        jumpSpeed = 1400;
+        fallSpeed = 60;
         onGround = false;
 
         lastDirection = 'r';
