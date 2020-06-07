@@ -76,7 +76,12 @@ public class PlayerAnimation {
 
         // Do frames
         TextureRegion[] standFrames = new TextureRegion[] {
-            tmp[0][0], tmp[0][1], tmp[0][2], tmp[0][3], tmp[0][2], tmp[0][1] 
+            tmp[0][0],
+            tmp[0][1],
+            tmp[0][2],
+            tmp[0][3],
+            tmp[0][2],
+            tmp[0][1] 
         };
 
         return new Animation<TextureRegion>(0.150f,standFrames);
