@@ -56,6 +56,7 @@ public class Unit extends Rectangle {
         setOnGround(land);
     }
 
+
     /**
      * Sets vspeed to 0 when the top-center of rectangle collides
      */
@@ -94,7 +95,7 @@ public class Unit extends Rectangle {
     public void collideLeft(Rectangle col) {
         // check every pixel for collision
         while((col.contains(this.x - this.width / 8, this.y + (this.height / 3)))
-               || (col.contains(this.x - this.width / 8, this.y + (this.height / 3 * 2)))
+           || (col.contains(this.x - this.width / 8, this.y + (this.height / 3 * 2)) )
         ) {
             this.setVx(0);
             this.x++;
@@ -105,8 +106,8 @@ public class Unit extends Rectangle {
      * Sets vx to 0 when the right of rectangle collides
      */
     public void collideRight(Rectangle col) {
-        while(col.contains(this.x + this.width, this.y + (this.height / 3))
-              || (col.contains(this.x + this.width, this.y + (this.height / 3 * 2)))
+        while(col.contains(this.x + this.width + this.width / 8, this.y + (this.height / 3))
+          || (col.contains(this.x + this.width + this.width / 8, this.y + (this.height / 3 * 2)) )
         ) {
             this.setVx(0);
             this.x--;
