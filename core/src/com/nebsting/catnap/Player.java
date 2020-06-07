@@ -48,8 +48,8 @@ public class Player extends Unit {
     public void logic() {
         gravity();
 
-        movePlayer();
-        jumpPlayer();
+        move();
+        jump();
 
         this.sprite = animation.setCurrentSprite();
 
@@ -59,7 +59,7 @@ public class Player extends Unit {
     /**
      * Moves player according to walk acceleration and speed
      */
-    public void movePlayer() {
+    public void move() {
         // left
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             vx = Math.max(vx - walkAcceleration, (walkMaxSpeed * -1));
@@ -82,7 +82,7 @@ public class Player extends Unit {
     /**
      * Jumps player by bumping vy
      */
-    public void jumpPlayer() {
+    public void jump() {
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && onGround) {
             vy = jumpSpeed;
             this.setOnGround(false);
