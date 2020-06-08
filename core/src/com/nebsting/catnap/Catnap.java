@@ -26,6 +26,10 @@ public class Catnap extends Game {
     Map map;
 
     Player player;
+    Aris aris;
+    Aris aris2;
+    Aris aris3;
+    Aris aris4;
     Camera camera;
 
     ShapeRenderer hitboxes;
@@ -37,6 +41,10 @@ public class Catnap extends Game {
         map = new Map("level/testlevel/");
 
         player = new Player(2500,70,map);
+        aris = new Aris(2500,580,map);
+        aris2 = new Aris(2500,580,map);
+        aris3 = new Aris(2700,580,map);
+        aris4 = new Aris(2300,580,map);
         camera = new Camera(player);
         
         hitboxes = new ShapeRenderer();
@@ -48,6 +56,13 @@ public class Catnap extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         player.logic();
+        if(player.colRec.bottom(aris)) {
+            player.setVy(20);
+        }
+        aris.logic();
+        aris2.logic();
+        aris3.logic();
+        aris4.logic();
         camera.logic();
 
         map.renderer.setView(camera);
@@ -56,11 +71,16 @@ public class Catnap extends Game {
         batch.setProjectionMatrix(camera.combined);
 		batch.begin();
         batch.draw(player.sprite, player.getSpritePosX(), player.getSpritePosY());
+        batch.draw(aris.sprite, aris.getX(), aris.getY());
+        batch.draw(aris2.sprite, aris2.getX(), aris2.getY());
+        batch.draw(aris3.sprite, aris3.getX(), aris3.getY());
+        batch.draw(aris4.sprite, aris4.getX(), aris4.getY());
 		batch.end();
 
         //hitboxes.setProjectionMatrix(camera.combined);
         //hitboxes.begin(ShapeType.Line);
         //hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
+        //hitboxes.rect(aris.x, aris.y, aris.getWidth(), aris.getHeight());
         //hitboxes.end();
 	}
 	
