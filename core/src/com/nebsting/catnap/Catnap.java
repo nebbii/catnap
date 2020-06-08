@@ -60,11 +60,10 @@ public class Catnap extends Game {
         batch.draw(player.sprite, player.getSpritePosX(), player.getSpritePosY());
 		batch.end();
 
-        hitboxes.setProjectionMatrix(camera.combined);
-        hitboxes.begin(ShapeType.Line);
-        hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
-        hitboxes.end();
-
+        //hitboxes.setProjectionMatrix(camera.combined);
+        //hitboxes.begin(ShapeType.Line);
+        //hitboxes.rect(player.x, player.y, player.getWidth(), player.getHeight());
+        //hitboxes.end();
 	}
 	
 	@Override
