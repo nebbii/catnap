@@ -34,10 +34,10 @@ public class Catnap extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
-        player = new Player(2500,70);
-        camera = new Camera(player);
-
         map = new Map("level/testlevel/");
+
+        player = new Player(2500,70,map);
+        camera = new Camera(player);
         
         hitboxes = new ShapeRenderer();
 	}
@@ -46,8 +46,6 @@ public class Catnap extends Game {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        player.collideLayers(map.rectangleObjects, map.polygonObjects);
 
         player.logic();
         camera.logic();

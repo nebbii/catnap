@@ -21,7 +21,7 @@ public class Player extends Unit {
 
     public int lastOnGround;
 
-    public Player(float x, float y) {
+    public Player(float x, float y, Map map) {
         width = 100;
         height = 192;
         spriteOffsetX = 0;
@@ -43,6 +43,7 @@ public class Player extends Unit {
 
         lastDirection = 'r';
 
+        this.map = map;
         animation = new PlayerAnimation(this);
     }
 
@@ -50,8 +51,9 @@ public class Player extends Unit {
      * This function gets called in render()
      */
     public void logic() {
-        gravity();
+        collideLayers();
 
+        gravity();
         move();
         jump();
 

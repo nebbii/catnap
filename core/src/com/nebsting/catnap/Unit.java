@@ -22,6 +22,7 @@ public class Unit extends Rectangle {
     public int walkAcceleration;
     public int walkMaxSpeed;
 
+    public Map map;
     public CollisionRectangle colRec;
     public CollisionPolygon colPoly;
 
@@ -41,12 +42,12 @@ public class Unit extends Rectangle {
         y += vy * Gdx.graphics.getDeltaTime();
     }
 
-    public void collideLayers(Rectangle[] rectangles, Polygon[] polygons) {
+    public void collideLayers() {
         boolean land = false;
 
         // Collide with rectangles
-        for(int i = 0; i<rectangles.length; i++) {
-            Rectangle col = rectangles[i];
+        for(int i = 0; i<map.rectangleObjects.length; i++) {
+            Rectangle col = map.rectangleObjects[i];
 
             colRec.top(col);
             colRec.left(col);
@@ -59,8 +60,8 @@ public class Unit extends Rectangle {
         }
 
         // Collide with polygons
-        for(int i = 0; i<polygons.length; i++) {
-            Polygon col = polygons[i];
+        for(int i = 0; i<map.polygonObjects.length; i++) {
+            Polygon col = map.polygonObjects[i];
 
             colPoly.top(col);
             colPoly.left(col);
