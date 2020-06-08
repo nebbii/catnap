@@ -1,5 +1,6 @@
 package com.nebsting.catnap;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Polygon;
 
 public class CollisionPolygon {
@@ -26,16 +27,18 @@ public class CollisionPolygon {
     public boolean bottom(Polygon col) {
         boolean landed = false;
 
-        for(int i=Math.round(unit.width/6); i < Math.round(unit.width/6*5); i++) {
-            // check for landing
-            if(col.contains(unit.x + i, unit.y - unit.height / 16)) { 
-                landed = true;
-            }
+        if(unit.getVy() < 0) {
+            for(int i=Math.round(unit.width/6); i < Math.round(unit.width/6*5); i++) {
+                // check for landing
+                if(col.contains(unit.x + i, unit.y - unit.height / 16)) { 
+                    landed = true;
+                }
 
-            // push out of floor
-            while(col.contains(unit.x + i, unit.y +1 - unit.height / 24)) { 
-                unit.setVy(0);
-                unit.y++;
+                // push out of floor
+                while(col.contains(unit.x + i, unit.y + 1 - unit.height / 24)) { 
+                    unit.setVy(0);
+                    unit.setY(unit.getY() + 1);
+                }
             }
         }
 
