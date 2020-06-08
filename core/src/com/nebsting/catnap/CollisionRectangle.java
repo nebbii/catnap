@@ -38,18 +38,16 @@ public class CollisionRectangle {
 
     public void left(Rectangle col) {
         // check every pixel for collision
-        while((col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3)))
-           || (col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3 * 2)) )
-        ) {
+        while(col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3))
+                   || col.contains(unit.x - unit.width / 8, unit.y + (unit.height / 3 * 2) )) {
             unit.setVx(0);
             unit.x++;
         }
     }
 
     public void right(Rectangle col) {
-        while(col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3))
-          || (col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3 * 2)) )
-        ) {
+        while(col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3) )
+                  || col.contains(unit.x + unit.width + unit.width / 8, unit.y + (unit.height / 3 * 2) )) {
             unit.setVx(0);
             unit.x--;
         }
