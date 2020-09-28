@@ -30,7 +30,7 @@ public class Catnap extends Game {
 
     Player player;
 
-    ArrayList<Unit> enemyList;
+    ArrayList<Aris> arisList;
 
     Aris aris;
     Camera camera;
@@ -44,8 +44,12 @@ public class Catnap extends Game {
         map = new Map("level/testlevel/");
 
         player = new Player(2500,70,map);
-        enemyList = new ArrayList<Unit>();
+
+        // Multiple arises
+        arisList = new ArrayList<Aris>();
         aris = new Aris(2500,580,map);
+
+        arisList.add(aris);
 
         camera = new Camera(player);
         
@@ -59,10 +63,13 @@ public class Catnap extends Game {
 
         player.logic();
         if(player.colRec.bottom(aris)) {
-            player.setVy(20);
+            player.setVy(50);
         }
 
-        aris.logic();
+        for(Aris obj: arisList) {
+            obj.logic();
+        }
+
         camera.logic();
 
         map.renderer.setView(camera);
@@ -71,7 +78,11 @@ public class Catnap extends Game {
         batch.setProjectionMatrix(camera.combined);
 		batch.begin();
         batch.draw(player.sprite, player.getSpritePosX(), player.getSpritePosY());
-        batch.draw(aris.sprite, aris.getX(), aris.getY());
+
+        for(Aris obj: arisList) {
+            batch.draw(obj.sprite, obj.getX(), obj.getY());
+        }
+
 		batch.end();
 
         //hitboxes.setProjectionMatrix(camera.combined);
