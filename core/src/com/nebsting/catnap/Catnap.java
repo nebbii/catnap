@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapRenderer;
@@ -20,16 +19,20 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
+import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+
+import java.util.ArrayList;
+
 public class Catnap extends Game {
 	SpriteBatch batch;
 
     Map map;
 
     Player player;
+
+    ArrayList<Unit> enemyList;
+
     Aris aris;
-    Aris aris2;
-    Aris aris3;
-    Aris aris4;
     Camera camera;
 
     ShapeRenderer hitboxes;
@@ -41,10 +44,9 @@ public class Catnap extends Game {
         map = new Map("level/testlevel/");
 
         player = new Player(2500,70,map);
+        enemyList = new ArrayList<Unit>();
         aris = new Aris(2500,580,map);
-        aris2 = new Aris(2500,580,map);
-        aris3 = new Aris(2700,580,map);
-        aris4 = new Aris(2300,580,map);
+
         camera = new Camera(player);
         
         hitboxes = new ShapeRenderer();
@@ -59,10 +61,8 @@ public class Catnap extends Game {
         if(player.colRec.bottom(aris)) {
             player.setVy(20);
         }
+
         aris.logic();
-        aris2.logic();
-        aris3.logic();
-        aris4.logic();
         camera.logic();
 
         map.renderer.setView(camera);
@@ -72,9 +72,6 @@ public class Catnap extends Game {
 		batch.begin();
         batch.draw(player.sprite, player.getSpritePosX(), player.getSpritePosY());
         batch.draw(aris.sprite, aris.getX(), aris.getY());
-        batch.draw(aris2.sprite, aris2.getX(), aris2.getY());
-        batch.draw(aris3.sprite, aris3.getX(), aris3.getY());
-        batch.draw(aris4.sprite, aris4.getX(), aris4.getY());
 		batch.end();
 
         //hitboxes.setProjectionMatrix(camera.combined);
